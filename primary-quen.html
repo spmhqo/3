@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Prompt Library</title>
+  <link rel="icon" href="spm.ico">
+  <style>
+    :root{color-scheme:light;--ink:#1e2c2b;--muted:#667572;--paper:#f6f5f1;--card:#fff;--line:#e2e8e4;--green:#174e43;--mint:#e9f2ed;--gold:#efb45c;--shadow:0 14px 38px rgba(22,48,42,.07)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Nirmala UI",sans-serif;line-height:1.75}button,a{font:inherit}.shell{width:min(1120px,calc(100% - 36px));margin:auto}.topbar{position:sticky;top:0;z-index:5;background:rgba(246,245,241,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:800;letter-spacing:.02em;color:var(--green);text-decoration:none}.nav{display:flex;gap:8px;overflow:auto;max-width:75%;padding:8px 0;scrollbar-width:thin}.nav a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:700;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:white}.nav a:hover,.nav a:focus-visible{color:var(--green);border-color:var(--green);outline:none}
+    .hero{padding:64px 0 35px}.eyebrow{color:#8c6a31;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em}.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.15;letter-spacing:-.04em;margin:10px 0 14px;color:var(--green)}.hero p{max-width:650px;margin:0;color:var(--muted);font-size:1.05rem}.prompt-list{display:grid;gap:22px;padding:8px 0 68px}.prompt-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);box-shadow:var(--shadow);scroll-margin-top:92px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.card-head h2{font-size:1.15rem;line-height:1.3;margin:0;color:var(--green)}.number{display:inline-grid;place-items:center;width:35px;height:35px;margin-right:10px;border-radius:12px;background:var(--mint);color:var(--green);font-size:.92rem}.copy-btn{border:1px solid #cddbd4;background:white;color:var(--green);font-weight:750;border-radius:11px;padding:9px 14px;cursor:pointer;white-space:nowrap;transition:.2s}.copy-btn:hover{background:var(--green);color:white}.copy-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.prompt-content{font-size:clamp(1rem,2vw,1.08rem);overflow-wrap:anywhere}.prompt-content p{margin:0 0 12px}.prompt-content p:last-child{margin-bottom:0}.prompt-content ul,.prompt-content ol{padding-left:1.5rem}.prompt-content strong{color:var(--green)}.flow{margin:0;padding:20px clamp(12px,3vw,26px);border-radius:16px;background:#f5f8f5;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.65}.flow .start{font-weight:850;color:var(--green)}.flow .arrow{color:#bd8a37;font-weight:900}.table-wrap{width:100%;overflow:visible}.responsive-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:.94rem}.responsive-table th,.responsive-table td{padding:13px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--line);border-bottom:1px solid var(--line);overflow-wrap:anywhere}.responsive-table th{background:var(--green);color:white;font-size:.88rem;line-height:1.45}.responsive-table th:first-child{border-top-left-radius:12px}.responsive-table th:last-child{border-top-right-radius:12px;border-right:0}.responsive-table td:first-child{font-weight:750;color:var(--green)}.responsive-table td:last-child{border-right:0}.responsive-table tbody tr:nth-child(even){background:#f7faf8}.responsive-table tbody tr:last-child td:first-child{border-bottom-left-radius:12px}.responsive-table tbody tr:last-child td:last-child{border-bottom-right-radius:12px}.footer{border-top:1px solid var(--line);padding:24px 0 32px;color:var(--muted);text-align:center;font-size:.9rem}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:10px 16px;border-radius:999px;background:#173f36;color:#fff;box-shadow:var(--shadow);transition:.2s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:760px){.shell{width:min(100% - 24px,620px)}.topbar-inner{align-items:flex-start;flex-direction:column;gap:0;padding:10px 0 8px}.nav{max-width:100%;width:100%;padding:7px 0 3px}.hero{padding:42px 0 25px}.prompt-list{gap:16px}.prompt-card{border-radius:17px;padding:20px 16px}.card-head{align-items:flex-start;margin-bottom:17px}.copy-btn{padding:8px 10px;font-size:.85rem}.table-wrap{overflow:visible}.responsive-table,.responsive-table tbody,.responsive-table tr,.responsive-table td{display:block;width:100%}.responsive-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.responsive-table{border:0}.responsive-table tr{margin:0 0 13px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff!important}.responsive-table td,.responsive-table tbody tr:last-child td{display:grid;grid-template-columns:minmax(105px,34%) minmax(0,1fr);gap:12px;padding:11px 12px;border:0;border-bottom:1px solid var(--line);border-radius:0!important}.responsive-table td:last-child{border-bottom:0}.responsive-table td::before{content:attr(data-label);font-weight:800;color:var(--green);font-size:.84rem;line-height:1.45}.responsive-table tbody tr:nth-child(even) td{background:#f7faf8}.flow{font-size:.94rem;text-align:left}}
+    @media(max-width:390px){.card-head{flex-wrap:wrap}.card-head h2{font-size:1.05rem}.copy-btn{margin-left:45px}.responsive-table td,.responsive-table tbody tr:last-child td{grid-template-columns:1fr;gap:4px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="shell topbar-inner"><a class="brand" href="#top">Prompt Library</a><nav class="nav" aria-label="Prompt navigation"><a href="#prompt-1">Prompt #1</a><a href="#prompt-2">Prompt #2</a><a href="#prompt-3">Prompt #3</a><a href="#prompt-4">Prompt #4</a><a href="#prompt-5">Prompt #5</a><a href="#prompt-6">Prompt #6</a></nav></div></header>
+  <main id="top" class="shell"><section class="hero"><div class="eyebrow">একটি ব্যবহারযোগ্য রেফারেন্স</div><h1>Prompt Library</h1><p>নিচের নেভিগেশন থেকে যেকোনো prompt-এ যান এবং এক ক্লিকে সেটি কপি করুন।</p></section>
+    <div class="prompt-list">
+      <article class="prompt-card" id="prompt-1"><div class="card-head"><h2><span class="number">1</span>Prompt #1</h2><button class="copy-btn" type="button" data-copy="prompt-1-content" aria-label="Copy Prompt 1">Copy Prompt</button></div><div class="prompt-content" id="prompt-1-content"><p>মানুষ অনেক ক্ষেত্রে immediate solution, remedy, advice, shortcut বা actionable answer চায়।</p><p>মানুষের attention → curiosity → question → inquiry → reasoning → understanding</p></div></article>
+      <article class="prompt-card" id="prompt-2"><div class="card-head"><h2><span class="number">2</span>Prompt #2</h2><button class="copy-btn" type="button" data-copy="prompt-2-content" aria-label="Copy Prompt 2">Copy Prompt</button></div><div class="prompt-content" id="prompt-2-content"><div class="table-wrap"><table class="responsive-table"><thead><tr><th>আপনার Information</th><th>Capability</th><th>Situation</th><th>Issue</th><th>Application Question</th></tr></thead><tbody><tr><td data-label="আপনার Information">How to do X</td><td data-label="Capability">X করার capability</td><td data-label="Situation">Situation 1</td><td data-label="Issue">Issue 1</td><td data-label="Application Question">“এই situation-এ X কীভাবে করব?”</td></tr><tr><td data-label="আপনার Information">How to do X</td><td data-label="Capability">X করার capability</td><td data-label="Situation">Situation 2</td><td data-label="Issue">Issue 2</td><td data-label="Application Question">“এই problem মেটাতে X কীভাবে ব্যবহার করব?”</td></tr><tr><td data-label="আপনার Information">How to do X</td><td data-label="Capability">X করার capability</td><td data-label="Situation">Situation 3</td><td data-label="Issue">Issue 3</td><td data-label="Application Question">“এই outcome পেতে X কীভাবে apply করব?”</td></tr></tbody></table></div></div></article>
+      <article class="prompt-card" id="prompt-3"><div class="card-head"><h2><span class="number">3</span>Prompt #3</h2><button class="copy-btn" type="button" data-copy="prompt-3-content" aria-label="Copy Prompt 3">Copy Prompt</button></div><div class="prompt-content" id="prompt-3-content"><p>A. এটি কোন capability দেয়? - মানুষ এটা জানার/শেখার পর কী করতে পারে?</p><p>B. সেই capability কোন কোন বাস্তব পরিস্থিতিতে দরকার? - কোথায় এই capability-এর প্রয়োজন তৈরি হয়?</p><p>C. প্রতিটি পরিস্থিতিতে আসল issue কী? - মানুষ সেখানে আসলে কোন সমস্যার মুখোমুখি?</p><p>D. সেই issue থেকে কোন practical question তৈরি হয়? - “এই পরিস্থিতিতে আমি কীভাবে X করব/কীভাবে X ব্যবহার করব?”</p><p>E. আমার information-এর কোন অংশ সেই question-এর answer? - পুরোটা, নাকি নির্দিষ্ট অংশ?</p></div></article>
+      <article class="prompt-card" id="prompt-4"><div class="card-head"><h2><span class="number">4</span>Prompt #4</h2><button class="copy-btn" type="button" data-copy="prompt-4-content" aria-label="Copy Prompt 4">Copy Prompt</button></div><div class="prompt-content" id="prompt-4-content"><p><strong>Retrieval System-এর সম্পূর্ণ Decision Flow:</strong></p><pre class="flow"><span class="start">INCOMING QUESTION</span>
+<span class="arrow">↓</span>
+ব্যক্তি আসলে কী করতে/সমাধান করতে/অর্জন করতে চাইছেন?
+<span class="arrow">↓</span>
+আমার X-এর সঙ্গে কি তার প্রয়োজনের সম্পর্ক আছে?
+<span class="arrow">↓</span>
+হ্যাঁ
+<span class="arrow">↓</span>
+QUESTION TYPE শনাক্ত করুন
+<span class="arrow">↓</span>
+প্রাসঙ্গিক INFORMATION UNIT শনাক্ত করুন
+<span class="arrow">↓</span>
+কতটা information প্রয়োজন নির্ধারণ করুন
+<span class="arrow">↓</span>
+Relevant অংশ retrieve করুন
+<span class="arrow">↓</span>
+Context অনুযায়ী সংক্ষিপ্ত উত্তর দিন
+<span class="arrow">↓</span>
+প্রয়োজনে পরবর্তী step দিন</pre></div></article>
+      <article class="prompt-card" id="prompt-5"><div class="card-head"><h2><span class="number">5</span>Prompt #5</h2><button class="copy-btn" type="button" data-copy="prompt-5-content" aria-label="Copy Prompt 5">Copy Prompt</button></div><div class="prompt-content" id="prompt-5-content"><p><strong>“How to do X” — Complete Question Map:</strong></p><div class="table-wrap"><table class="responsive-table"><thead><tr><th>প্রশ্নের ধরন</th><th>সম্ভাব্য প্রশ্ন</th><th>আপনার তথ্যের ব্যবহার</th><th>কী retrieve করবেন</th></tr></thead><tbody><tr><td data-label="প্রশ্নের ধরন">1. Direct</td><td data-label="সম্ভাব্য প্রশ্ন">“X কীভাবে করব?”</td><td data-label="আপনার তথ্যের ব্যবহার">পুরোটা</td><td data-label="কী retrieve করবেন">Purpose-এর সংক্ষিপ্ত context + prerequisites + complete process</td></tr><tr><td data-label="প্রশ্নের ধরন">2. Starting</td><td data-label="সম্ভাব্য প্রশ্ন">“X শুরু করব কীভাবে?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ</td><td data-label="কী retrieve করবেন">Starting point + prerequisites + প্রথম কয়েকটি প্রয়োজনীয় step</td></tr><tr><td data-label="প্রশ্নের ধরন">3. Process</td><td data-label="সম্ভাব্য প্রশ্ন">“X করার ধাপগুলো কী?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ</td><td data-label="কী retrieve করবেন">শুধু step-by-step process</td></tr><tr><td data-label="প্রশ্নের ধরন">4. Problem</td><td data-label="সম্ভাব্য প্রশ্ন">“X করতে গিয়ে আমার এই সমস্যাটা হচ্ছে—কী করব?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ + কখনও অতিরিক্ত তথ্য</td><td data-label="কী retrieve করবেন">Troubleshooting + সংশ্লিষ্ট process/decision point</td></tr><tr><td data-label="প্রশ্নের ধরন">5. Mistake</td><td data-label="সম্ভাব্য প্রশ্ন">“X করতে গিয়ে কী কী ভুল হতে পারে?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ</td><td data-label="কী retrieve করবেন">Common mistakes + সংশ্লিষ্ট correction</td></tr><tr><td data-label="প্রশ্নের ধরন">6. Preparation</td><td data-label="সম্ভাব্য প্রশ্ন">“X শুরু করার আগে কী কী প্রস্তুতি নিতে হবে?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ</td><td data-label="কী retrieve করবেন">Prerequisites + preparation</td></tr><tr><td data-label="প্রশ্নের ধরন">7. Decision</td><td data-label="সম্ভাব্য প্রশ্ন">“আমার ক্ষেত্রে X করা উচিত কি?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ + অনেক ক্ষেত্রে অতিরিক্ত তথ্য</td><td data-label="কী retrieve করবেন">Suitability/decision criteria + limitations; ব্যক্তির context না থাকলে অতিরিক্ত তথ্য প্রয়োজন</td></tr><tr><td data-label="প্রশ্নের ধরন">8. Improvement</td><td data-label="সম্ভাব্য প্রশ্ন">“X আমি করছি, কিন্তু আরও ভালোভাবে কীভাবে করব?”</td><td data-label="আপনার তথ্যের ব্যবহার">অংশ + কখনও অতিরিক্ত তথ্য</td><td data-label="কী retrieve করবেন">Best practices + optimisation + relevant mistakes</td></tr></tbody></table></div></div></article>
+      <article class="prompt-card" id="prompt-6"><div class="card-head"><h2><span class="number">6</span>Prompt #6</h2><button class="copy-btn" type="button" data-copy="prompt-6-content" aria-label="Copy Prompt 6">Copy Prompt</button></div><div class="prompt-content" id="prompt-6-content"><p>Situation (e.g.,&nbsp; Offline business):</p><p>Issue (e.g.,&nbsp; Online reach নেই):</p><p>Desired outcome (e.g.,&nbsp; Online presence / reach):</p><p>Applicable capability (e.g.,&nbsp; Facebook business presence তৈরি করা):</p></div></article>
+    </div>
+  </main>
+  <footer class="footer"><div class="shell">Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</div></footer>
+  <div class="toast" id="copy-toast" role="status" aria-live="polite">Prompt copied</div>
+  <script>
+    const toast = document.getElementById('copy-toast');
+    let toastTimer;
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const target = document.getElementById(button.dataset.copy);
+        const text = target.innerText.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const field = document.createElement('textarea');
+          field.value = text;
+          field.setAttribute('readonly', '');
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+          document.execCommand('copy');
+          field.remove();
+        }
+        toast.textContent = 'Prompt copied';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+      });
+    });
+  </script>
+</body>
+</html>

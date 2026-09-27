@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Primary Content Compass</title>
+  <link rel="icon" href="spm.ico">
+  <style>
+    :root{color-scheme:light;--ink:#1e2c2b;--muted:#667572;--paper:#f6f5f1;--card:#fff;--line:#e2e8e4;--green:#174e43;--mint:#e9f2ed;--gold:#efb45c;--shadow:0 14px 38px rgba(22,48,42,.07)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Nirmala UI",sans-serif;line-height:1.75}button,a{font:inherit}.shell{width:min(1120px,calc(100% - 36px));margin:auto}.topbar{position:sticky;top:0;z-index:5;background:rgba(246,245,241,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:800;color:var(--green);text-decoration:none}.nav{display:flex;gap:8px;overflow:auto;max-width:75%;padding:8px 0;scrollbar-width:thin}.nav a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:700;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:white}.nav a:hover,.nav a:focus-visible{color:var(--green);border-color:var(--green);outline:none}
+    .hero{padding:64px 0 35px}.eyebrow{color:#8c6a31;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em}.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.15;letter-spacing:-.04em;margin:10px 0 14px;color:var(--green)}.prompt-list{display:grid;gap:22px;padding:8px 0 68px}.prompt-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);box-shadow:var(--shadow);scroll-margin-top:92px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.card-head h2{font-size:1.15rem;line-height:1.3;margin:0;color:var(--green)}.number{display:inline-grid;place-items:center;width:35px;height:35px;margin-right:10px;border-radius:12px;background:var(--mint);color:var(--green);font-size:.92rem}.copy-btn{border:1px solid #cddbd4;background:white;color:var(--green);font-weight:750;border-radius:11px;padding:9px 14px;cursor:pointer;white-space:nowrap;transition:.2s}.copy-btn:hover{background:var(--green);color:white}.copy-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.prompt-content{font-size:clamp(1rem,2vw,1.08rem);overflow-wrap:anywhere}.prompt-content p{margin:0 0 14px}.prompt-content p:last-child{margin-bottom:0}.prompt-content strong{color:var(--green)}.tree{margin:0;padding:20px clamp(12px,3vw,26px);border-radius:16px;background:#f5f8f5;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.65}.tree .root{font-weight:850;color:var(--green)}.table-wrap{width:100%}.responsive-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:.94rem}.responsive-table th,.responsive-table td{padding:13px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--line);border-bottom:1px solid var(--line);overflow-wrap:anywhere}.responsive-table th{background:var(--green);color:white;font-size:.88rem;line-height:1.45}.responsive-table th:first-child{border-top-left-radius:12px}.responsive-table th:last-child{border-top-right-radius:12px;border-right:0}.responsive-table td:first-child{font-weight:750;color:var(--green)}.responsive-table td:last-child{border-right:0}.responsive-table tbody tr:nth-child(even){background:#f7faf8}.responsive-table tbody tr:last-child td:first-child{border-bottom-left-radius:12px}.responsive-table tbody tr:last-child td:last-child{border-bottom-right-radius:12px}.footer{border-top:1px solid var(--line);padding:24px 0 32px;color:var(--muted);text-align:center;font-size:.9rem}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:10px 16px;border-radius:999px;background:#173f36;color:#fff;box-shadow:var(--shadow);transition:.2s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:760px){.shell{width:min(100% - 24px,620px)}.topbar-inner{align-items:flex-start;flex-direction:column;gap:0;padding:10px 0 8px}.nav{max-width:100%;width:100%;padding:7px 0 3px}.hero{padding:42px 0 25px}.prompt-list{gap:16px}.prompt-card{border-radius:17px;padding:20px 16px}.card-head{align-items:flex-start;margin-bottom:17px}.copy-btn{padding:8px 10px;font-size:.85rem}.responsive-table,.responsive-table tbody,.responsive-table tr,.responsive-table td{display:block;width:100%}.responsive-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.responsive-table{border:0}.responsive-table tr{margin:0 0 13px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff!important}.responsive-table td,.responsive-table tbody tr:last-child td{display:grid;grid-template-columns:minmax(115px,34%) minmax(0,1fr);gap:12px;padding:11px 12px;border:0;border-bottom:1px solid var(--line);border-radius:0!important}.responsive-table td:last-child{border-bottom:0}.responsive-table td::before{content:attr(data-label);font-weight:800;color:var(--green);font-size:.84rem;line-height:1.45}.responsive-table tbody tr:nth-child(even) td{background:#f7faf8}.tree{font-size:.94rem;text-align:left}}
+    @media(max-width:390px){.card-head{flex-wrap:wrap}.card-head h2{font-size:1.05rem}.copy-btn{margin-left:45px}.responsive-table td,.responsive-table tbody tr:last-child td{grid-template-columns:1fr;gap:4px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="shell topbar-inner"><a class="brand" href="#top">Primary Content Compass</a><nav class="nav" aria-label="Prompt navigation"><a href="#prompt-1">Prompt #1</a><a href="#prompt-2">Prompt #2</a><a href="#prompt-3">Prompt #3</a><a href="#prompt-4">Prompt #4</a></nav></div></header>
+  <main id="top" class="shell"><section class="hero"><div class="eyebrow">Content format guide</div><h1>Primary Content Compass</h1></section>
+    <div class="prompt-list">
+      <article class="prompt-card" id="prompt-1"><div class="card-head"><h2><span class="number">1</span>Prompt #1</h2><button class="copy-btn" type="button" data-copy="prompt-1-content" aria-label="Copy Prompt 1">Copy Prompt</button></div><div class="prompt-content" id="prompt-1-content"><pre class="tree"><span class="root">HOW TO DO X</span>
+│
+├── 1. DIRECT
+│   └── “X কীভাবে করব?”
+│       → পুরো তথ্য
+│
+├── 2. STARTING
+│   └── “X শুরু করব কীভাবে?”
+│       → Starting অংশ
+│
+├── 3. PROCESS
+│   └── “X করার ধাপগুলো কী?”
+│       → Process অংশ
+│
+├── 4. PROBLEM
+│   └── “X করতে গিয়ে Y সমস্যা হচ্ছে—কী করব?”
+│       → Troubleshooting অংশ
+│       → না থাকলে অতিরিক্ত তথ্য
+│
+├── 5. MISTAKE
+│   └── “X করতে গিয়ে কী ভুল হতে পারে?”
+│       → Mistakes অংশ
+│
+├── 6. PREPARATION
+│   └── “X করার আগে কী লাগবে?”
+│       → Preparation অংশ
+│
+├── 7. DECISION
+│   └── “আমার ক্ষেত্রে X করা উচিত?”
+│       → Decision criteria অংশ
+│       → User context / অতিরিক্ত তথ্য
+│
+└── 8. IMPROVEMENT
+    └── “X আরও ভালোভাবে কীভাবে করব?”
+        → Best-practice অংশ
+        → প্রয়োজন হলে অতিরিক্ত তথ্য</pre></div></article>
+      <article class="prompt-card" id="prompt-2"><div class="card-head"><h2><span class="number">2</span>Prompt #2</h2><button class="copy-btn" type="button" data-copy="prompt-2-content" aria-label="Copy Prompt 2">Copy Prompt</button></div><div class="prompt-content" id="prompt-2-content"><div class="table-wrap"><table class="responsive-table"><thead><tr><th>Question</th><th>PDF / eBook</th><th>Article</th><th>Blog</th><th>Social</th></tr></thead><tbody>
+        <tr><td data-label="Question"><strong>Direct</strong></td><td data-label="PDF / eBook">Complete How-to Guide</td><td data-label="Article">How X Works</td><td data-label="Blog">Step-by-step answer</td><td data-label="Social">Key insight</td></tr>
+        <tr><td data-label="Question"><strong>Starting</strong></td><td data-label="PDF / eBook">Quick Start Guide</td><td data-label="Article">What to understand before X</td><td data-label="Blog">Beginner start guide</td><td data-label="Social">Wrong vs right starting point</td></tr>
+        <tr><td data-label="Question"><strong>Process</strong></td><td data-label="PDF / eBook">SOP / Workflow</td><td data-label="Article">Logic behind process</td><td data-label="Blog">Step-by-step</td><td data-label="Social">One key step</td></tr>
+        <tr><td data-label="Question"><strong>Problem</strong></td><td data-label="PDF / eBook">Troubleshooting Guide</td><td data-label="Article">Why X fails</td><td data-label="Blog">Problem → Fix</td><td data-label="Social">Hidden problem</td></tr>
+        <tr><td data-label="Question"><strong>Mistake</strong></td><td data-label="PDF / eBook">Mistake Checklist</td><td data-label="Article">Why people make mistakes</td><td data-label="Blog">Common mistakes</td><td data-label="Social">One surprising mistake</td></tr>
+        <tr><td data-label="Question"><strong>Preparation</strong></td><td data-label="PDF / eBook">Preparation Checklist</td><td data-label="Article">Why preparation matters</td><td data-label="Blog">What you need before X</td><td data-label="Social">One overlooked preparation</td></tr>
+        <tr><td data-label="Question"><strong>Decision</strong></td><td data-label="PDF / eBook">Decision Guide</td><td data-label="Article">When X makes/doesn't make sense</td><td data-label="Blog">Self-assessment guide</td><td data-label="Social">Decision question</td></tr>
+        <tr><td data-label="Question"><strong>Improvement</strong></td><td data-label="PDF / eBook">Optimization Playbook</td><td data-label="Article">What determines better results</td><td data-label="Blog">Improvement tips</td><td data-label="Social">One optimization insight</td></tr>
+      </tbody></table></div></div></article>
+      <article class="prompt-card" id="prompt-3"><div class="card-head"><h2><span class="number">3</span>Prompt #3</h2><button class="copy-btn" type="button" data-copy="prompt-3-content" aria-label="Copy Prompt 3">Copy Prompt</button></div><div class="prompt-content" id="prompt-3-content"><p>Social = “এটা নিয়ে ভাবুন।”</p><p>Blog = “আপনার এই প্রশ্নের উত্তর এখানে।”</p><p>Article = “এটা আসলে কেন/কীভাবে কাজ করে বুঝুন।”</p><p>PDF/eBook = “এটা করার/ব্যবহারের জন্য সম্পূর্ণ resource এখানে রাখুন।”</p></div></article>
+      <article class="prompt-card" id="prompt-4"><div class="card-head"><h2><span class="number">4</span>Prompt #4</h2><button class="copy-btn" type="button" data-copy="prompt-4-content" aria-label="Copy Prompt 4">Copy Prompt</button></div><div class="prompt-content" id="prompt-4-content"><p>এখানে Blog এবং PDF/eBook-এর মধ্যে সামান্য overlap আছে। মূল সমস্যা শব্দে নয়, “কীভাবে করবেন” বনাম “করার জন্য সম্পূর্ণ resource”—এই দুইয়ের functional boundary এখনও পুরো পরিষ্কার নয়।</p><p>আমি alignment-টা এভাবে করব।</p><h3>আসল পার্থক্য</h3><p>Blog-এর কাজ = Answer<br>-&gt; একটি নির্দিষ্ট প্রশ্নের উত্তর দিয়ে এখন কী করবেন তা পরিষ্কার করা।</p><p>PDF/eBook-এর কাজ = Resource<br>-&gt; একটি কাজ/সমস্যা/উদ্দেশ্যের জন্য প্রয়োজনীয় information-কে এক জায়গায় সম্পূর্ণ ও পুনর্ব্যবহারযোগ্যভাবে দেওয়া।</p><p>অর্থাৎ Blog-এ: “আপনার এই প্রশ্নের উত্তর এখানে।”</p><p>PDF/eBook-এ: “এই কাজটি করার জন্য প্রয়োজনীয় সম্পূর্ণ resource এখানে।”</p></div></article>
+    </div>
+  </main>
+  <footer class="footer"><div class="shell">Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</div></footer>
+  <div class="toast" id="copy-toast" role="status" aria-live="polite">Prompt copied</div>
+  <script>
+    const toast = document.getElementById('copy-toast');
+    let toastTimer;
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const target = document.getElementById(button.dataset.copy);
+        const text = target.innerText.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const field = document.createElement('textarea');
+          field.value = text;
+          field.setAttribute('readonly', '');
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+          document.execCommand('copy');
+          field.remove();
+        }
+        toast.textContent = 'Prompt copied';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+      });
+    });
+  </script>
+</body>
+</html>
