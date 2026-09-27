@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE & SUB-TITLE IDENTIFICATION POLICY</title>
+    <link rel="icon" href="spm.ico">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 flex flex-col min-h-full selection:bg-indigo-500 selection:text-white">
+    
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700/60 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 via-sky-300 to-teal-300 bg-clip-text text-transparent text-center sm:text-left">
+                TITLE & SUB-TITLE IDENTIFICATION POLICY
+            </h1>
+            <span class="text-xs px-3 py-1 bg-indigo-950/80 text-indigo-300 border border-indigo-800/60 rounded-full font-medium">
+                Bengali (India) Prompt Builder & Runner
+            </span>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+        
+        <!-- Intro Card -->
+        <section class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm">
+            <h2 class="text-lg font-semibold text-slate-200 mb-2">Policy & Instruction Runner</h2>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                Provide your content in the input field below. The tool will seamlessly combine your content into the strict prompt framework while preserving every rule, analytical framework, and output structure requirement.
+            </p>
+        </section>
+
+        <!-- Dynamic Input Field Section -->
+        <section class="bg-slate-800 border border-slate-700/80 rounded-2xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-3">
+                <label for="userContent" class="block text-sm font-semibold text-indigo-300 uppercase tracking-wider">
+                    [Insert content here] (Multi-lines Dynamic Input)
+                </label>
+                <span class="text-xs text-slate-400">Dynamic Content Input</span>
+            </div>
+            <textarea 
+                id="userContent" 
+                rows="6" 
+                class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm leading-relaxed resize-y transition-all shadow-inner"
+                placeholder="Enter or paste the raw content you want to analyse here..."
+            ></textarea>
+        </section>
+
+        <!-- Prompt Template Section (Read-only / Unchanged) -->
+        <section class="bg-slate-800 border border-slate-700/80 rounded-2xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-3">
+                <span class="block text-sm font-semibold text-slate-300 uppercase tracking-wider">
+                    Prompt Framework (Unmodified)
+                </span>
+                <span class="text-xs text-amber-400/90 bg-amber-950/40 border border-amber-800/40 px-2.5 py-0.5 rounded font-medium">
+                    Strict Rule: Unaltered
+                </span>
+            </div>
+            <div class="relative">
+                <textarea 
+                    id="systemPromptTemplate" 
+                    readonly 
+                    rows="12" 
+                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-slate-300 text-xs font-mono leading-relaxed resize-none focus:outline-none selection:bg-indigo-600 shadow-inner"
+                >Answer the following prompt in Bengali (India).
+
+Rules:
+- Use only Bengali (India).
+- Always address the reader as "আপনি".
+- Never use "তুমি" or "তুই".
+- Use a natural Kolkata-style conversational tone.
+- Use natural, modern Bengali (India).
+- Avoid Bangladeshi vocabulary, spelling, and expressions.
+
+PROMPT
+
+Your task is to identify the appropriate Title and Sub-title for the given content by first identifying the nature and motive of the target seeker.
+
+Do not jump directly to a Title or Sub-title.
+
+First analyse the seeker, then identify what the seeker is actually seeking, then map the content to the relevant seeker type and promise type, and finally generate the Title and Sub-title.
+
+
+PART 1 — ANALYSE THE TYPE OF SEEKER
+
+Classify the target seeker into the most appropriate Seeker Type from the following four types:
+
+1. Truth and Universal Well-being Seeker
+A seeker whose primary orientation is toward truth and universal well-being.
+
+2. Social Truth and Social Well-being Seeker
+A seeker whose primary orientation is toward socially accepted truth and the well-being of society.
+
+3. Group-Approved Truth and Well-being Seeker
+A seeker whose orientation is shaped by the truth, values, culture, and socio-economic interests approved by their group.
+
+4. Personally Motivated Seeker
+A seeker whose orientation is shaped by personal desires together with the truth, values, culture, and socio-economic interests approved by their group.
+
+
+Also determine whether the seeker is primarily trying to obtain the desired result by:
+
+- consciously seeking or striving to obtain it, or
+- obtaining it without consciously seeking or striving for it.
+
+Do not assume the classification. Infer it only from the content, context, and the seeker's apparent motive.
+
+
+PART 2 — IDENTIFY THE SEEKER'S MOTIVE
+
+Determine:
+
+1. What does the seeker consciously want?
+2. What problem, desire, or aspiration is driving the seeker?
+3. Is the seeker aware of the objective result they are seeking?
+4. If the seeker is not aware of the objective result, what desired consequence or impact appears to be driving their ambition?
+5. What is the seeker ultimately hoping to gain from the content?
+
+
+PART 3 — MAP ACTION → OBJECTIVE RESULT → CONSEQUENCE
+
+Identify the following chain from the content:
+
+Action/Karma
+→ Objective Result
+→ Consequence/Impact
+
+Definitions:
+
+Action/Karma:
+The action, practice, method, or activity discussed in the content.
+
+Objective Result:
+The direct result that the seeker can obtain by performing the action/Karma.
+
+Consequence/Impact:
+The benefit, experience, change, or further outcome that follows from obtaining the objective result.
+
+
+PART 4 — DETERMINE THE TITLE PROMISE
+
+The Title must promise the outcome that the target seeker actually wants from the content.
+
+The Title promise can be based on either:
+
+A. Objective Result
+The direct result of the relevant Action/Karma.
+
+B. Consequence/Impact
+The benefit, experience, or change that follows from the Objective Result.
+
+Use the following rule:
+
+If the seeker is aware of the Objective Result, determine whether the Objective Result itself or its Consequence/Impact is the stronger expression of the seeker's motive.
+
+If the seeker is unaware of the Objective Result but is ambitious for a particular benefit, identify the Objective Result that lies behind that ambition and/or the Consequence/Impact that the seeker actually desires.
+
+Do not make the Title about the subject merely because it is the subject of the content.
+
+Make the Title about what the seeker wants to obtain from that subject.
+
+
+PART 5 — DETERMINE THE SUB-TITLE PROMISE
+
+The Sub-title must strengthen and clarify the promise made by the Title.
+
+It may clarify:
+
+- what the reader will achieve,
+- how the result will be achieved,
+- what mechanism or approach will be used,
+- what benefit or consequence will follow,
+- or why the result matters to the seeker.
+
+The Sub-title must support the Title's promise.
+
+It must not introduce a separate, unrelated, or conflicting promise.
+
+
+PART 6 — FILL UP THE TWO TABLES
+
+After completing the analysis, fill up BOTH tables below.
+
+TABLE 1 — SEEKER TYPE ANALYSIS
+
+Use these four Seeker Types as the rows:
+
+1. Truth and Universal Well-being Seeker
+2. Social Truth and Social Well-being Seeker
+3. Group-Approved Truth and Well-being Seeker
+4. Personally Motivated Seeker
+
+Use these two dimensions as the columns:
+
+A. What the seeker is seeking
+B. How the seeker is trying to obtain it
+
+Fill the table based on the specific content and target seeker being analysed.
+
+Do not leave cells blank.
+
+Where a Seeker Type is not the primary target of the content, clearly indicate that and briefly explain why.
+
+TABLE 2 — TITLE & SUB-TITLE PROMISE ANALYSIS
+
+Use these Seeker Types as the rows:
+
+1. Aware Seeker
+2. Unaware but Ambitious Seeker
+
+Use these two promise types as the columns:
+
+A. Objective Result of the Action/Karma
+B. Consequence or Impact of the Objective Result
+
+Fill every cell with the relevant interpretation for the given content.
+
+If a particular promise type is not appropriate for the identified seeker, explicitly state why instead of leaving the cell blank.
+
+The tables must reflect the reasoning already established in Parts 1–5. Do not create table entries that contradict the preceding analysis.
+
+
+PART 7 — SHOW THE REASONING BEFORE THE FINAL TITLE
+
+Before giving the final Title and Sub-title, clearly show:
+
+1. Target Seeker
+2. Seeker Type
+3. Seeker's Motive
+4. What the seeker consciously wants
+5. Action/Karma
+6. Objective Result
+7. Consequence/Impact
+8. Whether the seeker is aware or unaware of the Objective Result
+9. Which type of promise should be central to the Title
+10. Why that promise is appropriate
+11. How the Sub-title strengthens the Title promise
+
+
+PART 8 — FINAL TITLE AND SUB-TITLE
+
+Finally provide:
+
+Title:
+[Final Title]
+
+Sub-title:
+[Final Sub-title]
+
+Then briefly explain:
+
+Why this Title fits the seeker's motive:
+[Explanation]
+
+Why this Sub-title strengthens the Title:
+[Explanation]
+
+
+IMPORTANT RULES
+
+1. Do not jump directly to the final Title.
+2. Do not confuse the subject of the content with the seeker's motive.
+3. Do not assume that the seeker wants the Objective Result merely because it is the direct result of the Action/Karma.
+4. Distinguish clearly between Objective Result and Consequence/Impact.
+5. Preserve the logical relationship:
+
+Action/Karma
+→ Objective Result
+→ Consequence/Impact
+
+6. The Title must satisfy the seeker's motive.
+7. The Sub-title must strengthen and clarify the Title's promise.
+8. Keep the Title and Sub-title consistent with the actual content.
+9. Do not invent a promise that the content cannot support.
+10. If the available information is insufficient to determine the seeker type or motive confidently, explicitly identify the uncertainty instead of silently assuming.
+11. The filled-up tables and the written analysis must remain internally consistent.
+12. The final Title and Sub-title must be derived from the analysis and tables, not generated independently of them.
+
+
+CONTENT TO ANALYSE
+
+[Insert content here]</textarea>
+            </div>
+        </section>
+
+        <!-- Action Controls -->
+        <section class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <button 
+                id="generateBtn"
+                class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 to-teal-600 hover:from-indigo-500 hover:to-teal-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-indigo-500/25 transition-all duration-200 transform active:scale-95 flex items-center justify-center gap-2"
+            >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Generate Combined Prompt
+            </button>
+            <button 
+                id="copyBtn"
+                class="w-full sm:w-auto px-8 py-4 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl shadow-lg transition-all duration-200 transform active:scale-95 flex items-center justify-center gap-2"
+            >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                Copy Combined Prompt
+            </button>
+        </section>
+
+        <section id="outputSection" class="bg-slate-800 border border-slate-700/80 rounded-2xl p-6 shadow-2xl hidden transition-all">
+            <div class="flex items-center justify-between mb-3">
+                <span class="block text-sm font-semibold text-teal-300 uppercase tracking-wider">
+                    Combined Output Preview (Ready to Use in AI Chat)
+                </span>
+                <span id="copyStatus" class="text-xs text-teal-400 font-medium"></span>
+            </div>
+            <textarea 
+                id="combinedOutput" 
+                readonly 
+                rows="14" 
+                class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-slate-200 text-xs font-mono leading-relaxed resize-y focus:outline-none selection:bg-teal-600 shadow-inner"
+            ></textarea>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800/80 border-t border-slate-700/60 mt-auto py-6 text-center text-xs text-slate-400">
+        <div class="max-w-5xl mx-auto px-4">
+            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userContentInput = document.getElementById('userContent');
+            const systemPromptTemplate = document.getElementById('systemPromptTemplate');
+            const generateBtn = document.getElementById('generateBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const outputSection = document.getElementById('outputSection');
+            const combinedOutput = document.getElementById('combinedOutput');
+            const copyStatus = document.getElementById('copyStatus');
+
+            function getCombinedText() {
+                const userText = userContentInput.value.trim() || "[Insert content here]";
+                const template = systemPromptTemplate.value;
+                // Replace the placeholder [Insert content here] at the end of the template with user content
+                return template.replace('[Insert content here]', userText);
+            }
+
+            generateBtn.addEventListener('click', () => {
+                const result = getCombinedText();
+                combinedOutput.value = result;
+                outputSection.classList.remove('hidden');
+                outputSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            copyBtn.addEventListener('click', () => {
+                const result = getCombinedText();
+                combinedOutput.value = result;
+                outputSection.classList.remove('hidden');
+
+                // Fallback copy mechanism using document.execCommand for iframe safety
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = result;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                try {
+                    document.execCommand('copy');
+                    copyStatus.textContent = '✓ Copied successfully!';
+                    setTimeout(() => { copyStatus.textContent = ''; }, 3000);
+                } catch (err) {
+                    copyStatus.textContent = '✗ Copy failed. Please select and copy manually.';
+                }
+                document.body.removeChild(tempTextArea);
+            });
+        });
+    </script>
+</body>
+</html>
