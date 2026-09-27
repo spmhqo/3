@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <title>Three Primary Tasks</title>
+  <link rel="icon" href="spm.ico">
+  <style>
+    :root{--ink:#1d2925;--muted:#66716b;--paper:#f5f4ef;--card:#fff;--line:#dfe4de;--green:#255c49;--green-dark:#174433;--soft:#e8f0eb;--shadow:0 12px 36px rgba(30,54,43,.07)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Noto Sans Bengali","Nirmala UI",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.75}
+    .wrap{width:min(100% - 36px,980px);margin-inline:auto}.hero{padding:clamp(42px,9vw,88px) 0 34px}.eyebrow{margin:0 0 10px;color:var(--green);font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2rem,7vw,4rem);line-height:1.12;letter-spacing:-.045em;margin:0;max-width:780px}.hero p{max-width:650px;color:var(--muted);margin:18px 0 0;font-size:1.05rem}
+    .nav{position:sticky;top:0;z-index:5;background:rgba(245,244,239,.92);backdrop-filter:blur(14px);border-block:1px solid rgba(223,228,222,.8)}.nav-inner{display:flex;gap:10px;overflow-x:auto;padding:12px 0;scrollbar-width:thin}.nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:#fff;font-size:.88rem;font-weight:700}.nav a:hover,.nav a:focus-visible{border-color:var(--green);color:var(--green);outline:none}
+    main{padding:26px 0 60px}.prompt-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,5vw,38px);margin:22px 0;box-shadow:var(--shadow);scroll-margin-top:84px}.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}.card-top h2{font-size:clamp(1.25rem,4vw,1.8rem);line-height:1.4;margin:0;letter-spacing:-.025em}.number{display:inline-grid;place-items:center;min-width:38px;height:38px;padding:0 9px;border-radius:12px;background:var(--soft);color:var(--green);font-weight:800;font-size:.9rem;margin-right:9px;vertical-align:middle}.copy-btn{flex:0 0 auto;border:0;border-radius:12px;background:var(--green);color:white;padding:11px 16px;font:inherit;font-size:.9rem;font-weight:750;cursor:pointer;transition:background .18s,transform .18s}.copy-btn:hover{background:var(--green-dark);transform:translateY(-1px)}.copy-btn:focus-visible{outline:3px solid #9ac6ae;outline-offset:3px}.prompt-text{font-size:1rem;line-height:1.95;overflow-wrap:anywhere}.prompt-text p{margin:0 0 1em}.prompt-text p:last-child{margin-bottom:0}.prompt-text ol{padding-left:1.45em;margin:0 0 1em}.prompt-text li{padding-left:.25em;margin:.32em 0}.prompt-text ol>li::marker{font-weight:700;color:var(--green)}
+    footer{border-top:1px solid var(--line);padding:25px 0 32px;text-align:center;color:var(--muted);font-size:.88rem}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#173d2e;color:#fff;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);font-size:.9rem;transition:.2s;z-index:9}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:560px){.wrap{width:min(100% - 24px,980px)}.hero{padding-top:38px}.hero p{font-size:.98rem}.prompt-card{border-radius:17px;margin:15px 0;padding:19px 16px}.card-top{display:block}.card-top h2{margin-bottom:14px}.copy-btn{width:100%}.prompt-text{font-size:.98rem;line-height:1.9}.nav-inner{width:100%;padding-inline:12px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="hero wrap">
+    <p class="eyebrow">Prompt collection</p>
+    <h1>Three Primary Tasks</h1>
+    <p>তিনটি প্রম্পট—ভাবনা পরিষ্কার করা, যুক্তির পথ সাজানো এবং Markdown থেকে HTML পৃষ্ঠা তৈরি করার জন্য।</p>
+  </header>
+  <nav class="nav" aria-label="Prompt navigation"><div class="nav-inner wrap">
+    <a href="#prompt-1">আমার বক্তব্য কীভাবে…</a><a href="#prompt-2">পাঠকের প্রশ্নের পথ</a><a href="#prompt-3">HTML Page</a>
+  </div></nav>
+  <main class="wrap">
+    <article class="prompt-card" id="prompt-1">
+      <div class="card-top"><h2><span class="number">01</span>আমার বক্তব্য কীভাবে সবচেয়ে যথাযথভাবে বলা যায়?</h2><button class="copy-btn" type="button" data-copy="prompt-1">Copy Prompt</button></div>
+      <div class="prompt-text">
+        <p>আমি আমার কয়েকটি বক্তব্যের সঠিক শব্দ, বাক্যগঠন ও ভাষা খুঁজে বের করতে পারছি না। আপনি আমার thinking partner হিসেবে আমাকে সাহায্য করুন—আমার বক্তব্যের প্রকৃত অর্থ ও intended meaning বুঝে, সেটিকে সবচেয়ে যথাযথভাবে প্রকাশ করার জন্য প্রয়োজনীয় শব্দ, বাক্য ও ভাষা খুঁজে বের করতে সাহায্য করুন।</p>
+        <p>আমার আসল প্রয়োজন হলো—আমার বক্তব্যের জন্য এমন terminology এবং way of expression খুঁজে বের করা, যা সাধারণ মানুষের কাছে সহজবোধ্য, স্বাভাবিক ও গ্রহণযোগ্য হবে, অথচ আমার বক্তব্যের প্রকৃত অর্থ ও সূক্ষ্মতা নষ্ট করবে না।</p>
+        <p>তাড়াহুড়ো করে কোনো conclusion-এ পৌঁছাবেন না। আমার হয়ে agent-এর মতো সিদ্ধান্ত নিয়ে কাজ করবেন না। বরং আমার সঙ্গে চিন্তার আদান-প্রদান করে ধাপে ধাপে বিষয়টি পরিষ্কার করতে সাহায্য করবেন। প্রয়োজন হলে আমার বক্তব্যের বিভিন্ন সম্ভাব্য interpretation পরীক্ষা করবেন এবং কোন শব্দ বা expression আমার intended meaning-কে সবচেয়ে যথাযথভাবে প্রকাশ করছে, তা আমার সঙ্গে reasoning করে খুঁজে বের করবেন।</p>
+        <p>লক্ষ্য হলো আমার হয়ে বক্তব্য তৈরি করা নয়; বরং আমার নিজের বক্তব্যকে সাধারণ মানুষের কাছে সহজবোধ্য ও গ্রহণযোগ্যভাবে প্রকাশ করার সঠিক terminology ও expression খুঁজে বের করতে আমাকে সাহায্য করা।</p>
+      </div>
+    </article>
+    <article class="prompt-card" id="prompt-2">
+      <div class="card-top"><h2><span class="number">02</span>আমার বক্তব্যে পৌঁছানোর জন্য পাঠককে কী কী প্রশ্নের মধ্য দিয়ে যেতে হবে?</h2><button class="copy-btn" type="button" data-copy="prompt-2">Copy Prompt</button></div>
+      <div class="prompt-text">
+        <p>আমি একটি নতুন বা প্রচলিত ধারণা থেকে ভিন্ন দৃষ্টিভঙ্গির একটি core message / thesis আমার লেখায় সাধারণ মানুষের কাছে সহজবোধ্য ও গ্রহণযোগ্যভাবে প্রতিষ্ঠা করতে চাই।</p>
+        <p>আপনি আমার thinking partner হিসেবে আমাকে সাহায্য করুন।</p>
+        <p>আমার লেখার reasoning structure হবে question-driven:</p>
+        <p>একটি প্রশ্ন → তার প্রয়োজনীয় উত্তর → সেই উত্তর থেকে স্বাভাবিকভাবে উঠে আসা পরবর্তী প্রশ্ন → তার উত্তর → আবার নতুন প্রশ্ন — এইভাবে একটির পর একটি প্রশ্ন ও উত্তরের মাধ্যমে reasoning এগোবে এবং শেষ পর্যন্ত পাঠক মূল conclusion / thesis-এ পৌঁছাবে।</p>
+        <p>আমার প্রধান সমস্যা হলো: আমি যে conclusion / thesis-এ পাঠককে পৌঁছাতে চাই, সেটি আমি জানি। কিন্তু শুরুর প্রশ্ন থেকে সেই conclusion-এ পৌঁছানো এবং শেষ পর্যন্ত সেটিকে গ্রহণ করার মতো understanding তৈরি হওয়ার জন্য পাঠকের মনে কোন কোন প্রশ্নের উত্তর থাকা প্রয়োজন, সেই প্রশ্নগুলো identify করা এবং তাদের logical ও chronological order নির্ধারণ করা আমার পক্ষে কঠিন।</p>
+        <p>আপনার কাজ হবে আমার হয়ে লেখাটি লিখে দেওয়া নয়। বরং আমার thinking partner হিসেবে:</p>
+        <ol>
+          <li>আমার core message / thesis এবং তার underlying logic বুঝুন।</li>
+          <li>পাঠকের বর্তমান অবস্থান থেকে শুরু করে আমার intended conclusion পর্যন্ত reasoning-এর পুরো পথটি reconstruct করুন।</li>
+          <li>সেই পথে পাঠকের মনে স্বাভাবিকভাবে যে প্রশ্নগুলো একটির পর একটি উঠতে পারে, সেগুলো identify করুন।</li>
+          <li>কোন প্রশ্নের উত্তর না জানা থাকলে পরবর্তী প্রশ্ন বা understanding তৈরি হবে না, তা identify করুন।</li>
+          <li>প্রশ্নগুলোর এমন একটি logical ও chronological order তৈরি করুন, যাতে প্রতিটি প্রশ্নের উত্তর পরবর্তী প্রয়োজনীয় প্রশ্নের জন্ম দেয়।</li>
+          <li>যেখানে reasoning-এ কোনো logical gap আছে, অর্থাৎ একটি প্রশ্নের উত্তর থেকে সরাসরি পরবর্তী প্রশ্নে যাওয়া যায় না, সেটি চিহ্নিত করুন এবং মাঝখানে প্রয়োজনীয় প্রশ্নটি খুঁজে বের করতে আমাকে সাহায্য করুন।</li>
+          <li>শুধু এমন প্রশ্ন রাখবেন না যেগুলো আমার নিজের reasoning-এর জন্য গুরুত্বপূর্ণ; বিবেচনা করবেন একজন সাধারণ পাঠকের কাছে কোন প্রশ্নটি আগে আসা স্বাভাবিক এবং কোন প্রশ্নের উত্তর পাওয়ার পর পরবর্তী প্রশ্নটি স্বাভাবিকভাবে তৈরি হবে।</li>
+          <li>একই সঙ্গে আমার core message-এর জন্য উপযুক্ত terminology এবং way of expression খুঁজে বের করতে সাহায্য করুন—যাতে তা সাধারণ মানুষের কাছে সহজবোধ্য, স্বাভাবিক ও গ্রহণযোগ্য হয়, কিন্তু মূল ধারণার যথার্থতা বা সূক্ষ্মতা নষ্ট না হয়।</li>
+          <li>কোনো conclusion, terminology বা question sequence তাড়াহুড়ো করে final করে দেবেন না। সম্ভাব্য interpretation বা reasoning path থাকলে সেগুলো আমার সঙ্গে পরীক্ষা করুন এবং প্রয়োজন হলে নিজের inference সংশোধন করুন।</li>
+          <li>আমার established perspective এবং আমার intended meaning-এর সঙ্গে আপনার নিজের inference-কে গুলিয়ে ফেলবেন না। কোনটি আমার বক্তব্য থেকে পাওয়া, কোনটি আপনার reconstruction, এবং কোনটি আপনার inference—প্রয়োজনে এই পার্থক্য স্পষ্ট রাখুন।</li>
+        </ol>
+        <p>সবচেয়ে গুরুত্বপূর্ণ: reasoning-এর প্রতিটি ধাপের লক্ষ্য হবে পাঠককে আমার conclusion বলিয়ে দেওয়া নয়, বরং এমনভাবে understanding তৈরি করা যাতে একটির উত্তর থেকেই পরবর্তী প্রশ্নটি স্বাভাবিকভাবে প্রয়োজনীয় হয়ে ওঠে।</p>
+        <p>অর্থাৎ content-এর মৌলিক structural unit হবে:</p>
+        <p>Question → Reasoning → Understanding → Insufficiency → Next Necessary Question</p>
+        <p>আমার হয়ে agent-এর মতো সিদ্ধান্ত নিয়ে লেখাটি তৈরি করবেন না। আমার সঙ্গে চিন্তা করে reasoning architecture-টি আবিষ্কার করতে সাহায্য করবেন।</p>
+        <p>প্রথমে আমার thesis-কে explain বা rewrite করার চেষ্টা না করে, সেটি কীভাবে একজন সাধারণ পাঠকের কাছে ধাপে ধাপে understandable এবং acceptable হয়ে উঠতে পারে—সেই reasoning path খুঁজে বের করার কাজে আমার thinking partner হিসেবে কাজ করুন।</p>
+      </div>
+    </article>
+    <article class="prompt-card" id="prompt-3">
+      <div class="card-top"><h2><span class="number">03</span>HTML Page</h2><button class="copy-btn" type="button" data-copy="prompt-3">Copy Prompt</button></div>
+      <div class="prompt-text">
+        <p>Please create a 100% mobile-responsive HTML page containing the content of the uploaded file. The content is written in Markdown. Convert the Markdown formatting into appropriate HTML elements, such as H1, H2, H3, tables, lists, etc., as applicable in the final file.</p>
+        <p>IMPORTANT: Any table(s) used in the content must be 100% mobile-responsive and must remain easy to read and use on mobile devices.</p>
+        <p>RULE (MANDATORY)</p>
+        <ol>
+          <li>Give me all the code, CSS, and scripts in a single code box.</li>
+          <li>Footer = Copyright © &lt;script&gt;document.write(new Date().getFullYear())&lt;/script&gt; Siva Prasad Mukherjee. All Rights Reserved. Also add: &lt;link rel="icon" href="spm.ico"&gt;</li>
+          <li>Please don't edit, add, or delete anything in the prompt. Keep the prompt exactly as it is in the relevant prompt boxes.</li>
+          <li>Create navigation for the prompts.</li>
+          <li>Add a "Copy Prompt" button to each prompt and each answer.</li>
+        </ol>
+      </div>
+    </article>
+  </main>
+  <footer><div class="wrap">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script>
+    const toast = document.querySelector('.toast');
+    let toastTimer;
+    function getPromptText(card) {
+      return card.querySelector('.prompt-text').innerText.trim();
+    }
+    document.querySelectorAll('[data-copy]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const text = getPromptText(document.getElementById(button.dataset.copy));
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (error) {
+          const temp = document.createElement('textarea'); temp.value = text; temp.setAttribute('readonly', ''); temp.style.position = 'fixed'; temp.style.opacity = '0'; document.body.appendChild(temp); temp.select(); document.execCommand('copy'); temp.remove();
+        }
+        button.textContent = 'Copied!';
+        toast.textContent = 'Prompt copied to clipboard'; toast.classList.add('show');
+        clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+        setTimeout(() => button.textContent = 'Copy Prompt', 2200);
+      });
+    });
+  </script>
+</body>
+</html>
