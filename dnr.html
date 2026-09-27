@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bn" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decode-n-Rewrite</title>
+    <link rel="icon" href="spm.ico">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter & Bengali supporting font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        bengali: ['"Noto Serif Bengali"', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 flex flex-col justify-between font-sans selection:bg-indigo-500 selection:text-white">
+
+    <header class="w-full bg-white border-b border-slate-200 py-6 px-4 sm:px-8 shadow-xs">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-indigo-900 tracking-tight">Decode-n-Rewrite</h1>
+            <p class="mt-2 text-sm sm:text-base text-slate-600 font-medium">Analyze, clarify, and refine your messages for clarity and impact</p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+        
+        <!-- Instruction Card -->
+        <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-5 sm:p-6 shadow-xs">
+            <h2 class="text-indigo-900 font-semibold text-lg mb-1">How to use</h2>
+            <p class="text-sm text-indigo-700">Enter your message below. The static prompt will automatically combine with your message so you can copy and paste the full request into your AI assistant or workflow.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Uneditable Static Prompt Box -->
+            <div class="flex flex-col bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
+                <div class="flex justify-between items-center mb-3">
+                    <label class="text-sm font-semibold text-slate-700 tracking-wide uppercase">Static Prompt (Uneditable)</label>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">Locked</span>
+                </div>
+                <div id="staticPromptBox" class="flex-grow bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm text-slate-700 font-bengali leading-relaxed overflow-y-auto max-h-[350px] whitespace-pre-wrap select-all">আমি একটি message প্রকাশ করতে গিয়ে যে শব্দ, বাক্য এবং প্রকাশভঙ্গী ব্যবহার করেছি, তা নীচে দিলাম।
+
+Let’s discuss it together to:
+
+1. প্রথমে আমার ব্যবহৃত গুরুত্বপূর্ণ শব্দ ও বাক্যগুলোর মাধ্যমে আমি কী বোঝাতে চেয়েছি, তা বুঝে নেওয়া;
+2. তারপর পুরো message-এর intended meaning, core message এবং underlying idea স্পষ্ট করা;
+3. কোথায় শব্দ, বাক্য বা expression-এর কারণে meaning অস্পষ্ট, কঠিন, ambiguous বা ভুলভাবে বোঝার সম্ভাবনা আছে, তা চিহ্নিত করা;
+4. আমার intended meaning অক্ষুণ্ণ রেখে কীভাবে শব্দ, বাক্য এবং expression আরও সহজবোধ্য, স্বাভাবিক এবং গ্রহণযোগ্য করা যায়, তা আলোচনা করা;
+5. সবশেষে সেই understanding-এর ভিত্তিতে message-টি এমনভাবে rewrite করা, যাতে একজন সাধারণ পাঠকও সহজে এর intended meaning বুঝতে পারেন।
+
+গুরুত্বপূর্ণ:
+
+* আমার মূল message-এর intended meaning পরিবর্তন করবেন না।
+* শুধু ভাষাকে সহজ করার জন্য নতুন meaning, assumption বা conclusion যোগ করবেন না।
+* প্রথমে আমার সঙ্গে meaning ও expression নিয়ে আলোচনা করুন; discussion-এর ভিত্তি পরিষ্কার হওয়ার পরেই final rewrite দিন।</div>
+            </div>
+
+            <!-- Dynamic Multi-line Input Field Box -->
+            <div class="flex flex-col bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
+                <div class="flex justify-between items-center mb-3">
+                    <label for="userMessage" class="text-sm font-semibold text-slate-700 tracking-wide uppercase">Your Message</label>
+                    <span class="text-xs bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-full font-medium">Dynamic Input</span>
+                </div>
+                <textarea id="userMessage" rows="14" class="flex-grow w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all resize-none font-bengali" placeholder="[Insert message here]"></textarea>
+            </div>
+        </div>
+
+        <!-- Action Section -->
+        <div class="flex flex-col sm:flex-row items-center justify-between bg-white border border-slate-200 rounded-2xl p-5 shadow-xs gap-4">
+            <div class="text-sm text-slate-500 text-center sm:text-left">
+                Combines static instructions and your message cleanly with standard separation tags.
+            </div>
+            <button id="copyBtn" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm transition-all cursor-pointer">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <span id="copyBtnText">Copy Combined Prompt & Message</span>
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="w-full bg-white border-t border-slate-200 py-6 px-4 text-center text-xs sm:text-sm text-slate-600">
+        <div class="max-w-4xl mx-auto">
+            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyBtn = document.getElementById('copyBtn');
+            const copyBtnText = document.getElementById('copyBtnText');
+            const userMessageInput = document.getElementById('userMessage');
+            const staticPromptBox = document.getElementById('staticPromptBox');
+
+            copyBtn.addEventListener('click', () => {
+                const promptText = staticPromptBox.innerText;
+                const userMsg = userMessageInput.value.trim();
+
+                const combinedText = promptText + "\n\nMESSAGE\n\n" + (userMsg ? userMsg : "[Insert message here]");
+
+                // Fallback copy mechanism using execCommand for iframe restrictions safety
+                const textarea = document.createElement('textarea');
+                textarea.value = combinedText;
+                textarea.style.position = 'fixed';  // Avoid scrolling to bottom
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showCopiedFeedback();
+                    } else {
+                        // Try modern API if fallback had issues
+                        navigator.clipboard.writeText(combinedText).then(() => {
+                            showCopiedFeedback();
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                        });
+                    }
+                } catch (err) {
+                    console.error('Fallback copy failed: ', err);
+                }
+
+                document.body.removeChild(textarea);
+            });
+
+            function showCopiedFeedback() {
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                copyBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                copyBtnText.textContent = 'Copied!';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+                    copyBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
