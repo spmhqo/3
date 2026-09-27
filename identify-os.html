@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identify The Operating System - SPM</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="spm.ico">
+
+    <style>
+        :root {
+            --primary-color: #ef6c57; 
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #333;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Branded Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: var(--primary-color);
+            font-family: sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            width: 42px;
+            height: 30px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .page-title-area {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+        }
+
+        .page-title-area h1 {
+            font-size: 28px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .prompt-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            margin-bottom: 50px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .prompt-header {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .prompt-header h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .prompt-body {
+            padding: 25px;
+        }
+
+        .input-section {
+            margin-bottom: 20px;
+        }
+
+        .input-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 15px;
+        }
+
+        .dynamic-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 100px;
+            background: #fff;
+            color: var(--text-dark);
+            transition: border-color 0.2s;
+        }
+
+        .dynamic-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .prompt-content {
+            padding: 30px;
+            background: var(--code-bg);
+            color: var(--code-text);
+            font-family: 'Fira Code', monospace;
+            font-size: 15px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.8;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            .nav-links { font-size: 13px; gap: 15px; }
+            .prompt-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .copy-btn { width: 100%; justify-content: center; }
+            .page-title-area h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-box">SPM</div> শিব প্রসাদ মুখার্জি 
+        </div>
+        <div class="nav-links">
+            <a href="https://spmukherjee.co.in/" target="_blank"><i class="fa-regular fa-user"></i> শিবা</a>
+            <a href="https://spm.graphy.com/s/store" target="_blank">
+                <i class="fa-solid fa-store"></i> শিবার কালেকশন দেখুন
+            </a>
+            <a href="#"><i class="fa-regular fa-circle-question"></i> সহায়তা</a>
+        </div>
+    </header>
+
+    <div class="page-title-area">
+        <h1>Identify The Operating System</h1>
+    </div>
+
+    <div class="container">
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <h2><i class="fa-solid fa-code"></i> Identify The Operating System Prompt</h2>
+                <button class="copy-btn" onclick="copyFullPrompt('fullPromptContainer', this)">
+                    <i class="fa-regular fa-copy"></i> Copy Prompt
+                </button>
+            </div>
+            <div class="prompt-body" id="fullPromptContainer">
+                <div class="input-section">
+                    <label for="dynamicInput1">1 multi-lines dynamic input field:</label>
+                    <textarea id="dynamicInput1" class="dynamic-textarea" placeholder="এখানে Issue/Problem লিখুন">[এখানে Issue/Problem লিখুন]</textarea>
+                </div>
+                
+                <div style="margin-top: 15px; margin-bottom: 8px; font-weight: 600; color: var(--text-dark);">Prompt:</div>
+                
+                <pre class="prompt-content" id="osPrompt">নীচে একটি Issue/Problem দেওয়া হবে। আপনার কাজ হলো সেই Issue/Problem-এর দৃশ্যমান ফলাফল বা surface-level description-এর নিচে কাজ করা actual Operating System বা অন্তর্নিহিত ব্যবস্থাটি শনাক্ত, reconstruct এবং সুসংগঠিতভাবে ব্যাখ্যা করা।
+
+আপনাকে অবশ্যই নীচে দেওয়া Operating System-এর সংজ্ঞা এবং তিন-অঙ্গের কাঠামো কঠোরভাবে অনুসরণ করতে হবে।
+
+OPERATING SYSTEM — LOCKED DEFINITION
+
+যে underlying Method + Architecture + Operating Rules-এর মাধ্যমে কোনও issue তৈরি, পরিচালিত বা পুনরুৎপাদিত হয়—সেটাই সেই issue-র Operating System বা অন্তর্নিহিত ব্যবস্থা।
+
+অন্তর্নিহিত ব্যবস্থা (দৃশ্যমান ফলাফলের নিচে থাকা সম্পূর্ণ system) হলো—
+
+কর্মসম্পাদন-পদ্ধতি (Method): যে পদ্ধতিতে কোনও কাজ বা ঘটনা ঘটে বা সম্পন্ন হয়।
+
+কর্মসম্পাদন-যন্ত্রব্যবস্থা (Architecture): যে দেহ, উপকরণ, যন্ত্র ও গঠনের মাধ্যমে কোনও কাজ বা ঘটনা ঘটে বা সম্পন্ন হয়।
+
+পরিচালন-নিয়ম (Operating Rules): যে নিয়ম বা সূত্র মেনে কর্মসম্পাদন-পদ্ধতি ও কর্মসম্পাদন-যন্ত্রব্যবস্থা নিজেদের কাজ করে।
+
+অতএব:
+
+Operating System = Method + Architecture + Operating Rules
+
+Method = কীভাবে কাজটি ঘটে
+Architecture = কী দিয়ে/কোন machinery-র মাধ্যমে ঘটে
+Operating Rules = কোন নিয়মে Method ও Architecture কাজ করে
+
+NON-NEGOTIABLE STRUCTURAL RULE
+
+Issue-এর Operating System একটি CLOSED THREE-COMPONENT MODEL।
+
+Operating System-এর মধ্যে এবং শুধুমাত্র এর মধ্যে থাকবে:
+
+1. Method
+2. Architecture
+3. Operating Rules
+
+কোনও fourth component তৈরি, যোগ, নামকরণ বা প্রস্তাব করা যাবে না।
+
+Cause, trigger, symptom, consequence, outcome, objective, behaviour, context, environment, condition, motivation, intention, belief, resource, constraint, feedback, factor, principle, mechanism, process, structure, relationship, remedy বা অন্য কোনও concept-কে Operating System-এর আলাদা বা চতুর্থ component হিসেবে প্রতিষ্ঠা করা যাবে না।
+
+এই ধরনের কোনও concept analysis-এ প্রয়োজন হলে তা কেবল Method, Architecture অথবা Operating Rules-এর ভিতরে তার যথাযথ জায়গায় ব্যাখ্যা করা যাবে—কিন্তু আলাদা component হিসেবে নয়।
+
+বিশেষ করে “Mechanism” শব্দটি Method-এর বিকল্প বা চতুর্থ component হিসেবে ব্যবহার করবেন না, যদি না তা স্পষ্টভাবে Method-এর কার্যপ্রণালী বোঝাতে ব্যবহৃত হয়।
+
+ANALYSIS RULES
+
+1. প্রথমে Issue-টির surface-level manifestation শনাক্ত করুন।
+
+অর্থাৎ বাইরে থেকে কী দেখা যাচ্ছে, কী ঘটছে বা কী সমস্যা হিসেবে অনুভূত হচ্ছে—সংক্ষেপে তা বলুন।
+
+Surface manifestation নিজে Operating System নয়।
+
+2. তারপর surface-এর নিচে গিয়ে অনুসন্ধান করুন:
+
+“এই Issue-টি তৈরি, পরিচালিত বা পুনরুৎপাদিত হওয়ার জন্য ভিতরে আসলে কীভাবে কাজটি ঘটছে?”
+
+3. এরপর Operating System-কে অবশ্যই এই তিনটি এবং শুধুমাত্র এই তিনটি component-এ reconstruct করুন।
+
+A. METHOD — কর্মসম্পাদন-পদ্ধতি
+
+নির্ধারণ করুন:
+
+* কোন কাজ বা কার্যপ্রবাহের মাধ্যমে Issue-টি তৈরি/পরিচালিত/পুনরুৎপাদিত হয়?
+* কাজটি কীভাবে ঘটে?
+* কীভাবে একটি step থেকে পরবর্তী step-এ যায়?
+* কোন কার্যপ্রক্রিয়ার মাধ্যমে observable result তৈরি হয়?
+
+এখানে focus থাকবে:
+
+কীভাবে কাজটি ঘটে?
+
+Method-এর মধ্যে Architecture বা Operating Rules-কে মিশিয়ে ফেলবেন না।
+
+B. ARCHITECTURE — কর্মসম্পাদন-যন্ত্রব্যবস্থা
+
+নির্ধারণ করুন:
+
+* কোন দেহ, উপকরণ, যন্ত্র, component বা গঠনের মাধ্যমে Method-টি কাজ করে?
+* এই machinery বা structure-এর কোন অংশ কী ভূমিকা পালন করে?
+* কোন arrangement বা configuration Method-টিকে কাজ করার সুযোগ দেয়?
+
+এখানে focus থাকবে:
+
+কী দিয়ে বা কোন machinery-র মাধ্যমে কাজটি ঘটে?
+
+Architecture-এর মধ্যে Method বা Operating Rules-কে মিশিয়ে ফেলবেন না।
+
+C. OPERATING RULES — পরিচালন-নিয়ম
+
+নির্ধারণ করুন:
+
+* কোন নিয়ম বা সূত্র মেনে Method কাজ করে?
+* কোন নিয়ম বা সূত্র মেনে Architecture-এর বিভিন্ন অংশ নিজেদের কাজ করে?
+* কোন নিয়ম Method ও Architecture-এর operation-কে নির্দিষ্টভাবে govern করে?
+
+এখানে focus থাকবে:
+
+কোন নিয়মে Method ও Architecture কাজ করে?
+
+Operating Rules-এর মধ্যে আলাদা কোনও fourth component তৈরি করবেন না।
+
+THREE-COMPONENT INTEGRATION
+
+তিনটি component আলাদাভাবে শনাক্ত করার পরে দেখান কীভাবে তারা একসঙ্গে কাজ করে।
+
+অর্থাৎ:
+
+Architecture কী machinery বা structure প্রদান করছে,
+Method সেই machinery/structure-এর মাধ্যমে কীভাবে কাজটি ঘটাচ্ছে,
+এবং Operating Rules কোন নিয়মে Method ও Architecture-কে operate করাচ্ছে—
+
+এই সম্পর্কটি ব্যাখ্যা করুন।
+
+তিনটির interaction-ই Issue-এর Operating System।
+
+তিনটির বাইরে কোনও আলাদা “system component” নির্ধারণ করবেন না।
+
+IMPORTANT DISTINCTIONS
+
+নিচের বিষয়গুলিকে Operating System-এর component-এর সঙ্গে গুলিয়ে ফেলবেন না:
+
+Symptom ≠ Operating System
+
+Visible Result ≠ Operating System
+
+Cause ≠ Operating System
+
+Trigger ≠ Operating System
+
+Consequence ≠ Operating System
+
+Behaviour ≠ Operating System
+
+Remedy ≠ Operating System
+
+Objective ≠ Operating System
+
+Context ≠ Operating System
+
+এই বিষয়গুলির কোনওটি Method, Architecture বা Operating Rules-এর অংশ হিসেবে প্রমাণিত হলে সংশ্লিষ্ট component-এর ভিতরে ব্যাখ্যা করা যেতে পারে। কিন্তু এগুলিকে আলাদা component বানানো যাবে না।
+
+NO FORCED CAUSAL CHAIN
+
+Method → Architecture → Operating Rules-কে একটি বাধ্যতামূলক chronological sequence হিসেবে ধরে নেবেন না।
+
+এগুলি Operating System-এর তিনটি constituent component।
+
+Issue অনুযায়ী এদের পারস্পরিক relationship যেভাবে বাস্তবে কাজ করে, সেভাবেই ব্যাখ্যা করুন।
+
+যদি তিনটির মধ্যে কোনও একটি অন্যটির operation-এর prerequisite হয়, সেটি ব্যাখ্যা করুন; কিন্তু সেই relationship-কে নতুন component হিসেবে নাম দেবেন না।
+
+EVIDENCE AND INFERENCE
+
+Operating System reconstruct করার সময়:
+
+* যা Issue-এর তথ্য থেকে সরাসরি প্রতিষ্ঠিত, তা fact হিসেবে বলুন।
+* যা available information থেকে যুক্তিসঙ্গতভাবে infer করা হচ্ছে, তাকে inference হিসেবে চিহ্নিত করুন।
+* যা নির্ধারণ করার মতো তথ্য নেই, তা অনুমান করে পূরণ করবেন না।
+* পর্যাপ্ত তথ্য না থাকলে সংশ্লিষ্ট component-এর অনিশ্চয়তা স্পষ্টভাবে জানান।
+* কোনও plausible interpretation-কে established fact হিসেবে উপস্থাপন করবেন না।
+
+একাধিক plausible Operating System model সম্ভব হলে প্রতিটি model-কে একই তিন-component framework-এ দেখান এবং কোন তথ্যের ভিত্তিতে কোন interpretation তৈরি হচ্ছে তা ব্যাখ্যা করুন।
+
+OUTPUT FORMAT
+
+1. ISSUE
+
+[Issue/Problem-টির সংক্ষিপ্ত পরিচয়]
+
+2. SURFACE-LEVEL RESULT
+
+[বাইরে থেকে কী দেখা যাচ্ছে বা কী সমস্যা হিসেবে প্রকাশ পাচ্ছে]
+
+3. THE ISSUE'S OPERATING SYSTEM
+
+একটি সংক্ষিপ্ত overview দিন:
+
+“এই Issue-টি যে Operating System-এর মাধ্যমে তৈরি, পরিচালিত বা পুনরুৎপাদিত হচ্ছে, সেটি গঠিত—Method + Architecture + Operating Rules—এই তিনটির সমন্বয়ে।”
+
+তারপর তিনটি component ব্যাখ্যা করুন।
+
+3A. METHOD — কর্মসম্পাদন-পদ্ধতি
+
+[কাজটি কীভাবে ঘটে]
+
+3B. ARCHITECTURE — কর্মসম্পাদন-যন্ত্রব্যবস্থা
+
+[কী দিয়ে/কোন machinery, উপকরণ, দেহ বা গঠনের মাধ্যমে ঘটে]
+
+3C. OPERATING RULES — পরিচালন-নিয়ম
+
+[কোন নিয়ম বা সূত্র মেনে Method ও Architecture কাজ করে]
+
+4. HOW THE THREE COMPONENTS WORK TOGETHER
+
+Method + Architecture + Operating Rules কীভাবে পরস্পরের সঙ্গে কাজ করে Issue-টি তৈরি, পরিচালিত বা পুনরুৎপাদিত করে—তা একটি coherent explanation-এ দেখান।
+
+5. OPERATING SYSTEM IN ONE VIEW
+
+শেষে তিনটি component-কে একসঙ্গে একটি compact formulation-এ দেখান:
+
+Method:
+[কীভাবে কাজটি ঘটে]
+
+Architecture:
+[কী দিয়ে/কোন machinery-র মাধ্যমে ঘটে]
+
+Operating Rules:
+[কোন নিয়মে Method ও Architecture কাজ করে]
+
+এরপর এক বাক্যে:
+
+“এই তিনটির সমন্বিত ব্যবস্থাই Issue-টির Operating System বা অন্তর্নিহিত ব্যবস্থা।”
+
+6. CERTAINTY CHECK
+
+সংক্ষেপে আলাদা করুন:
+
+Established:
+[যা যথেষ্টভাবে প্রতিষ্ঠিত]
+
+Inference:
+[যা reasoning-এর ভিত্তিতে অনুমান করা হয়েছে]
+
+Unknown:
+[যা নির্ধারণ করার মতো তথ্য নেই]
+
+FINAL DISCIPLINE
+
+পুরো analysis জুড়ে মনে রাখুন:
+
+Operating System = Method + Architecture + Operating Rules
+
+এটি একটি CLOSED THREE-COMPONENT MODEL।
+
+কোনও অবস্থাতেই Operating System-কে চার বা তার বেশি component-এ expand করবেন না।
+
+আপনার analysis যত গভীরই হোক, যত কারণ, mechanism, relationship, factor বা process আবিষ্কৃত হোক—শেষ পর্যন্ত সেগুলিকে অবশ্যই Method, Architecture অথবা Operating Rules-এর উপযুক্ত অংশে map করতে হবে।
+
+লক্ষ্য হলো Issue-এর remedy দেওয়া নয়, Issue-এর উপর opinion দেওয়া নয়, অথবা শুধু তার কারণ বলা নয়।
+
+লক্ষ্য হলো দৃশ্যমান ফলাফলের নিচে কাজ করা সেই তিন-অঙ্গের অন্তর্নিহিত ব্যবস্থা উন্মোচন করা:
+
+Method + Architecture + Operating Rules।
+
+ISSUE/PROBLEM:
+
+<span id="dynamicValueDisplay">[এখানে Issue/Problem লিখুন]</span></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Live sync input field value with the prompt display
+        const dynamicInput = document.getElementById('dynamicInput1');
+        const dynamicValueDisplay = document.getElementById('dynamicValueDisplay');
+
+        dynamicInput.addEventListener('input', function() {
+            dynamicValueDisplay.innerText = this.value;
+        });
+
+        function copyFullPrompt(containerId, btn) {
+            const inputVal = dynamicInput.value;
+            const promptText = document.getElementById('osPrompt').innerText;
+            
+            const fullCombinedText = `1 multi-lines dynamic input field:\n\n[এখানে Issue/Problem লিখুন]\n${inputVal}\n\nPrompt:\n\n${promptText}`;
+
+            navigator.clipboard.writeText(fullCombinedText).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btn.style.background = '#2ecc71';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Copy failed. Please manually select the text.');
+            });
+        }
+    </script>
+
+</body>
+</html>
