@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ef">
+  <title>Situation, Issue, Reason &amp; Impact</title>
+  <link rel="icon" href="spm.ico">
+  <style>
+    :root{color-scheme:light;--ink:#17211d;--muted:#64726b;--paper:#f6f4ef;--card:#fff;--line:#e5e9e5;--green:#176b55;--pale:#eaf4ef;--gold:#b8792b;--shadow:0 14px 38px rgba(25,48,39,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Nirmala UI",sans-serif;line-height:1.75}
+    .topbar{position:sticky;top:0;z-index:5;background:rgba(246,244,239,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1100px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:.9rem;font-weight:800;letter-spacing:.02em;color:var(--green)}nav{display:flex;gap:8px;overflow-x:auto;max-width:75%;scrollbar-width:thin;padding:3px}nav a{white-space:nowrap;text-decoration:none;color:#42534b;font-size:.82rem;font-weight:700;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line)}nav a:hover,nav a:focus-visible{color:var(--green);border-color:var(--green);outline:none}
+    main{width:min(880px,calc(100% - 32px));margin:48px auto 60px}.hero{padding:30px 0 24px}.eyebrow{margin:0 0 8px;color:var(--gold);font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.2;letter-spacing:-.035em;margin:0 0 12px} .intro{color:var(--muted);margin:0;font-size:1.05rem}
+    .section-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,34px);margin:18px 0;box-shadow:var(--shadow)}h2{font-size:clamp(1.35rem,4vw,1.8rem);line-height:1.4;margin:0 0 18px}.section-card p{margin:0 0 12px}.section-card p:last-child{margin-bottom:0}.label{font-weight:800;color:var(--green)}.example{border-left:3px solid #b8d9c9;padding:5px 0 5px 15px;margin:12px 0 10px!important;color:#34463d}.arrow{color:var(--green);font-weight:700}
+    .copy-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #cbd8d0;border-radius:999px;background:#fff;color:var(--green);padding:8px 13px;font:700 .82rem inherit;cursor:pointer;min-height:42px}.copy-btn:hover{background:var(--pale)}.copy-btn:focus-visible{outline:3px solid #91c3ae;outline-offset:2px}.copy-btn svg{width:16px;height:16px;flex:none}.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.card-head h2{flex:1}
+    .relationship{background:#f0f6f2;border:1px solid #d7e6dd;border-radius:16px;padding:18px;margin:18px 0}.relationship p{margin:0 0 7px}.relationship p:last-child{margin:0}.flow{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0 14px;text-align:center}.flow-item{background:#fff;border:1px solid #dce8e0;border-radius:12px;padding:9px 16px;width:min(100%,380px);font-weight:750}.flow-arrow{color:var(--green);font-size:1.3rem;line-height:1.2;font-weight:900}.flow-caption{color:var(--muted);font-size:.84rem;margin:0 0 12px!important}.callout{padding:16px 18px;background:#fff8ed;border:1px solid #f1dfc4;border-radius:14px}.callout strong{color:#85531b}.relationship-card h3{font-size:1.08rem;margin:24px 0 6px}.relationship-card .copy-btn{margin-top:16px}
+    footer{text-align:center;color:var(--muted);font-size:.9rem;padding:26px 16px 34px;border-top:1px solid var(--line)}
+    @media(max-width:640px){.topbar-inner{display:block;padding:10px 14px}.brand{display:block;margin:0 0 7px}nav{max-width:100%;gap:6px}nav a{font-size:.77rem;padding:6px 10px}main{width:min(100% - 24px,880px);margin:26px auto 40px}.hero{padding:20px 4px 16px}.section-card{border-radius:16px;margin:13px 0;padding:20px 17px}.card-head{display:block}.card-head .copy-btn{margin:0 0 14px}.card-head h2{margin-bottom:14px}.copy-btn{width:100%}.relationship-card .copy-btn{margin-top:16px}.flow{padding-left:0;padding-right:0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" style="text-decoration:none">ধারণাগুলোর সম্পর্ক</a>
+      <nav aria-label="প্রম্পট নেভিগেশন">
+        <a href="#situation">১. পরিস্থিতি</a>
+        <a href="#reason">২. ইস্যুর কারণ</a>
+        <a href="#issue">৩. ইস্যু</a>
+        <a href="#impact">৪. প্রভাব</a>
+        <a href="#relationship">সম্পর্ক</a>
+        <a href="#action-chain">কর্মের chain</a>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">Situation · Reason · Issue · Impact</p>
+      <h1 id="page-title">চারটি ধারণা, একটি সম্পর্ক</h1>
+      <p class="intro">বর্তমান অবস্থা, সমস্যা, তার কারণ এবং ফলাফল—সহজ সংজ্ঞা ও উদাহরণে।</p>
+    </section>
+
+    <section class="section-card" id="situation" aria-labelledby="situation-title">
+      <div class="card-head"><h2 id="situation-title">১. পরিস্থিতি (Situation)</h2><button class="copy-btn" type="button" data-copy="situation-content"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>Copy Prompt</button></div>
+      <div id="situation-content"><p><strong>সংজ্ঞা:</strong> কোনও বিষয় বা ঘটনার ক্ষেত্রে <strong>বর্তমানে বাস্তবে যে সামগ্রিক অবস্থা বিদ্যমান</strong>, সেটিই Situation। এর মধ্যে বিদ্যমান Issue এবং তার ফলে তৈরি হওয়া Impact/Consequence দৃশ্যমান হতে পারে।</p><p class="example"><strong>সহজ উদাহরণ:</strong> একটি দোকানে ক্রেতা কম আসছে, ফলে বিক্রিও কমে গেছে।</p><p class="arrow">→ এটি দোকানটির <strong>বর্তমান পরিস্থিতি (Situation)</strong>।</p></div>
+    </section>
+
+    <section class="section-card" id="reason" aria-labelledby="reason-title">
+      <div class="card-head"><h2 id="reason-title">২. ইস্যুর কারণ (Reason of Issue)</h2><button class="copy-btn" type="button" data-copy="reason-content"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>Copy Prompt</button></div>
+      <div id="reason-content"><p><strong>সংজ্ঞা:</strong> বর্তমান পরিস্থিতিতে যে Issue বিদ্যমান, সেটি <strong>কেন তৈরি হয়েছে বা কেন বিদ্যমান রয়েছে—তার কারণ</strong> হলো Reason of Issue।</p><p class="example"><strong>সহজ উদাহরণ:</strong> দোকানটির ক্রেতা কম আসার কারণ হলো দোকানটি অনলাইনে কোনও প্রচার করছে না।</p><p class="arrow">→ এটি <strong>Issue-এর কারণ (Reason of Issue)</strong>।</p></div>
+    </section>
+
+    <section class="section-card" id="issue" aria-labelledby="issue-title">
+      <div class="card-head"><h2 id="issue-title">৩. ইস্যু (Issue)</h2><button class="copy-btn" type="button" data-copy="issue-content"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>Copy Prompt</button></div>
+      <div id="issue-content"><p><strong>সংজ্ঞা:</strong> বর্তমান পরিস্থিতিতে বিদ্যমান <strong>নির্দিষ্ট অভাব, Gap, Lack, Deficiency বা Problem</strong>, যা সমাধান বা দূর করা প্রয়োজন, সেটিই Issue।</p><p class="example"><strong>সহজ উদাহরণ:</strong> দোকানটিতে পর্যাপ্ত ক্রেতা আসছে না।</p><p class="arrow">→ এটিই <strong>Issue</strong>।</p></div>
+    </section>
+
+    <section class="section-card" id="impact" aria-labelledby="impact-title">
+      <div class="card-head"><h2 id="impact-title">৪. প্রভাব / পরিণতি (Impact / Consequence)</h2><button class="copy-btn" type="button" data-copy="impact-content"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>Copy Prompt</button></div>
+      <div id="impact-content"><p><strong>সংজ্ঞা:</strong> কোনও Issue বিদ্যমান থাকার কারণে <strong>সরাসরি বা পরোক্ষভাবে যে পরিবর্তন, ক্ষতি, ফল বা পরিণতি তৈরি হয়</strong>, সেটিই Impact / Consequence।</p><p class="example"><strong>সহজ উদাহরণ:</strong> ক্রেতা কম আসার ফলে দোকানের বিক্রি কমে যাচ্ছে।</p><p class="arrow">→ এটি Issue-এর <strong>Impact / Consequence</strong>।</p></div>
+    </section>
+
+    <section class="section-card relationship-card" id="relationship" aria-labelledby="relationship-title">
+      <div class="card-head"><h2 id="relationship-title">চারটির সম্পর্ক একসঙ্গে</h2><button class="copy-btn" type="button" data-copy="relationship-content"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>Copy Prompt</button></div>
+      <div id="relationship-content">
+        <div class="relationship">
+          <div class="flow" aria-label="Situation, Issue, Reason of Issue, Impact-এর সম্পর্ক">
+            <div class="flow-item">Situation = বর্তমানে বাস্তবে কী অবস্থা?</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Issue = সেই পরিস্থিতিতে কী নির্দিষ্ট অভাব / Gap / Problem আছে?</div><div class="flow-arrow" aria-hidden="true">↑</div>
+            <div class="flow-item">Reason of Issue = সেই Issue কেন আছে?</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Impact / Consequence = সেই Issue-এর কারণে কী হচ্ছে?</div>
+          </div>
+          <p>আর causal relationship-টি:</p>
+          <div class="flow" aria-label="কারণ থেকে Issue এবং Impact-এর প্রবাহ">
+            <div class="flow-item">Reason of Issue</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Issue</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Impact / Consequence</div>
+          </div>
+        </div>
+        <p class="callout">যেখানে <strong>Situation</strong> হলো এই পুরো বাস্তব অবস্থাটিকে দেখার <strong>বর্তমান-state perspective</strong>—এটি Reason, Issue বা Impact-এর সমার্থক নয়।</p>
+      </div>
+    </section>
+
+    <section class="section-card relationship-card" id="action-chain" aria-labelledby="action-chain-title">
+      <div class="card-head"><h2 id="action-chain-title">সম্পাদিত কর্ম থেকে Situation ও Issue</h2><button class="copy-btn" type="button" data-copy="action-chain-content">Copy Prompt</button></div>
+      <div id="action-chain-content">
+        <div class="relationship">
+          <p>সম্পাদিত কর্ম → Result → Impact / Consequence → বর্তমান Situation</p>
+          <p>অর্থাৎ,</p>
+          <p>সম্পাদিত কর্মের ফলে Result তৈরি হয় → Result-এর ফলে Impact/Consequence তৈরি হয় → সেই Impact-সহ সামগ্রিক বাস্তব অবস্থা হলো বর্তমান Situation।</p>
+          <h3>উদাহরণ</h3>
+          <p>ধরা যাক:</p>
+          <p>দোকানদার অনলাইনে প্রচার বন্ধ করে দিয়েছেন।</p>
+          <div class="flow" aria-label="কর্ম থেকে বর্তমান Situation-এর উদাহরণ">
+            <div class="flow-item">সম্পাদিত কর্ম:<br>অনলাইন প্রচার বন্ধ করা।</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Result:<br>অনলাইন থেকে নতুন ক্রেতা আসা কমে গেল।</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Impact / Consequence:<br>মোট Customer Lead কমে গেল এবং বিক্রির সুযোগ কমে গেল।</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Current Situation:<br>দোকানে বর্তমানে পর্যাপ্ত ক্রেতা নেই এবং বিক্রি কমে গেছে।</div>
+          </div>
+          <p>তাই chain-টি এভাবে লেখা বেশি নির্ভুল:</p>
+          <div class="flow" aria-label="নির্ভুল causal chain">
+            <div class="flow-item">সম্পাদিত কর্ম</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Result</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Impact / Consequence</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">বর্তমান Situation</div>
+          </div>
+          <p>তবে এখানে একটি সূক্ষ্ম বিষয় আছে। Situation শুধু Impact-এর পরের আরেকটি causal event নয়। Situation হলো এই মুহূর্তে বিদ্যমান সামগ্রিক বাস্তব অবস্থা। তাই একে কঠোর causal chain-এর শেষ ধাপ হিসেবে না দেখে বর্তমান অবস্থার snapshot হিসেবে দেখা বেশি সঠিক।</p>
+          <p>আর যদি Issue-কেও যুক্ত করি, তাহলে:</p>
+          <div class="flow" aria-label="কর্ম থেকে Issue পর্যন্ত সম্পর্ক">
+            <div class="flow-item">সম্পাদিত কর্ম</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Result</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Impact / Consequence</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">বর্তমান Situation</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">বর্তমান Situation-এর মধ্যে নির্দিষ্ট Gap / Lack</div><div class="flow-arrow" aria-hidden="true">↓</div>
+            <div class="flow-item">Issue</div>
+          </div>
+          <p>এখানে Reason of Issue আবার আলাদা প্রশ্নের উত্তর:</p>
+          <p>এই Issue কেন তৈরি হলো?</p>
+          <p>অর্থাৎ Reason সাধারণত Issue-এর পূর্ববর্তী causal explanation, Situation-এর পরের ধাপ নয়।</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</footer>
+  <script>
+    document.querySelectorAll('[data-copy]').forEach(function(button){
+      button.addEventListener('click', async function(){
+        const target=document.getElementById(button.dataset.copy);
+        const text=target.innerText;
+        try{
+          await navigator.clipboard.writeText(text);
+          button.dataset.original=button.dataset.original||button.innerText;
+          button.innerText='Copied!';
+          window.setTimeout(function(){button.innerText=button.dataset.original},1600);
+        }catch(error){
+          const field=document.createElement('textarea');field.value=text;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();document.execCommand('copy');field.remove();
+          button.dataset.original=button.dataset.original||button.innerText;button.innerText='Copied!';window.setTimeout(function(){button.innerText=button.dataset.original},1600);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
