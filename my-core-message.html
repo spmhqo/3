@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ef">
+  <title>Core Message</title>
+  <link rel="icon" href="spm.ico">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202521;
+      --muted: #606a63;
+      --paper: #fffefa;
+      --canvas: #f3f5f1;
+      --line: #e3e8e1;
+      --green: #285b43;
+      --green-dark: #1f4835;
+      --soft-green: #edf4ee;
+      --shadow: 0 18px 55px rgba(30, 48, 37, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: "Noto Sans Bengali", "Hind Siliguri", "Vrinda", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+    }
+    .topbar {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 5;
+      background: rgba(255, 254, 250, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .topbar-inner {
+      width: min(100% - 36px, 1080px);
+      min-height: 68px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { color: var(--ink); font-weight: 750; text-decoration: none; letter-spacing: -.02em; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav a {
+      color: var(--green-dark);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      font-size: .94rem;
+      font-weight: 650;
+    }
+    nav a:hover, nav a:focus-visible { background: #dfece1; outline: 2px solid transparent; }
+    main { width: min(100% - 36px, 860px); margin: 50px auto 64px; }
+    .page-heading { margin: 0 0 22px; font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.2; letter-spacing: -.035em; }
+    .content-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 5vw, 54px);
+    }
+    .content-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 22px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    .content-label { margin: 0; color: var(--muted); font-size: .9rem; font-weight: 650; }
+    .copy-button {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      background: var(--green);
+      color: white;
+      font: inherit;
+      font-size: .92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .copy-button:hover { background: var(--green-dark); }
+    .copy-button:active { transform: translateY(1px); }
+    .copy-button:focus-visible { outline: 3px solid #a8c6af; outline-offset: 3px; }
+    article { font-size: clamp(1rem, 2.2vw, 1.075rem); }
+    article h2 { margin: 0 0 22px; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.4; }
+    article p { margin: 0 0 18px; }
+    article ol, article ul { margin: 0 0 22px; padding-inline-start: 1.65em; }
+    article li { padding-inline-start: .2em; margin-block: 5px; }
+    article li::marker { color: var(--green); font-weight: 700; }
+    article strong { font-weight: 750; color: #243a2c; }
+    .summary-list { margin-top: -6px; }
+    .closing {
+      margin-top: 24px;
+      padding: 19px 21px;
+      border-inline-start: 4px solid var(--green);
+      background: var(--soft-green);
+      border-radius: 0 12px 12px 0;
+      font-weight: 650;
+    }
+    footer { padding: 24px 18px 32px; color: var(--muted); text-align: center; font-size: .9rem; }
+    @media (max-width: 600px) {
+      body { font-size: 15px; line-height: 1.8; }
+      .topbar-inner { width: min(100% - 28px, 1080px); min-height: 60px; }
+      main { width: min(100% - 24px, 860px); margin: 30px auto 42px; }
+      .content-card { padding: 20px 18px 26px; border-radius: 16px; }
+      .content-toolbar { align-items: flex-start; margin-bottom: 23px; padding-bottom: 17px; }
+      nav a { padding: 7px 11px; font-size: .88rem; }
+      .copy-button { padding: 9px 12px; font-size: .85rem; }
+      article ol, article ul { padding-inline-start: 1.4em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">Core Message</a>
+      <nav aria-label="Prompts">
+        <a href="#core-message">Core Message</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <h1 class="page-heading">Core Message</h1>
+    <section class="content-card" id="core-message" aria-labelledby="content-label">
+      <div class="content-toolbar">
+        <p class="content-label" id="content-label">Core Message</p>
+        <button class="copy-button" id="copy-button" type="button">Copy Text</button>
+      </div>
+      <article id="message-content">
+        <h2>যে কোনও কাজের ফল কীভাবে বিচার করব</h2>
+
+        <p>যে কোনও কাজের ফল বিচার করতে হলে তিনটি বিষয় দেখতে হবে:</p>
+        <ol>
+          <li><strong>কাজটি নিজে</strong>—কী কাজ করা হচ্ছে;</li>
+          <li><strong>কর্মী</strong>—কাজটি যে ব্যক্তি বা গোষ্ঠী করছে;</li>
+          <li><strong>কর্তা</strong>—বিশ্বচরাচরকে টিকিয়ে রাখে ও রক্ষা করে যে বৃহত্তর ব্যবস্থা।</li>
+        </ol>
+
+        <p>এই আলোচনায় কাজটিকে <strong>কর্ম</strong> বলব। যে ব্যক্তি বা গোষ্ঠী কাজটি করে, তাকে <strong>কর্মী</strong>, <strong>যন্ত্র</strong> বা <strong>মাধ্যম</strong> বলব। আর বিশ্বচরাচরকে টিকিয়ে রাখা ও রক্ষা করা বৃহত্তর ব্যবস্থাকে <strong>কর্মের কর্তা</strong>, <strong>প্রধান পরিচালনাকারী</strong> বা <strong>যন্ত্রী</strong> বলব।</p>
+
+        <p>এই তিনটিকেই আমরা আলাদা আলাদা <strong>সত্তা (Entity)</strong> হিসেবে ধরব। প্রত্যেক সত্তারই একটি অন্তর্নিহিত ব্যবস্থা (Operating System) আছে। সেই ব্যবস্থা তিনটি উপাদানে গঠিত:</p>
+        <ol>
+          <li><strong>কর্মসম্পাদন-পদ্ধতি (Method):</strong> কাজটি কীভাবে ঘটে বা সম্পন্ন হয়।</li>
+          <li><strong>কর্মসম্পাদন-কাঠামো (Architecture):</strong> কোন দেহ, উপকরণ, যন্ত্র বা গঠনের মাধ্যমে কাজটি ঘটে।</li>
+          <li><strong>পরিচালন-নিয়ম (Operating Rules):</strong> কোন নিয়ম বা সূত্র মেনে পদ্ধতি ও কাঠামো কাজ করে।</li>
+        </ol>
+
+        <p>সংক্ষেপে:</p>
+        <ul class="summary-list">
+          <li><strong>Method:</strong> কীভাবে কাজটি ঘটে;</li>
+          <li><strong>Architecture:</strong> কী দিয়ে বা কোন কাঠামোর মাধ্যমে কাজটি ঘটে;</li>
+          <li><strong>Operating Rules:</strong> কোন নিয়মে পদ্ধতি ও কাঠামো কাজ করে।</li>
+        </ul>
+
+        <p>কোনও বিষয় বা ঘটনার অন্তর্নিহিত ব্যবস্থা বলতে সেই পদ্ধতি, কাঠামো ও নিয়মের সমন্বয়কে বোঝায়, যার মাধ্যমে বিষয়টি তৈরি হয়, পরিচালিত হয় বা আবার ঘটে।</p>
+
+        <p>কাজের ফল বিচার করার সময় তাই তিনটি সত্তাকেই তাদের নিজ নিজ অন্তর্নিহিত ব্যবস্থাসহ বিশ্লেষণ করতে হবে:</p>
+        <ul>
+          <li>কর্ম এবং কর্মের অন্তর্নিহিত ব্যবস্থা;</li>
+          <li>কর্মী এবং কর্মীর অন্তর্নিহিত ব্যবস্থা;</li>
+          <li>কর্তা এবং কর্তার অন্তর্নিহিত ব্যবস্থা।</li>
+        </ul>
+
+        <p>বিশ্লেষণে দেখতে হবে:</p>
+        <ul>
+          <li>কর্মের পদ্ধতি কর্তার অন্তর্নিহিত ব্যবস্থার সঙ্গে সামঞ্জস্যপূর্ণ কি না;</li>
+          <li>কর্মের উদ্দেশ্য বা প্রত্যাশিত ফল কর্তার ব্যবস্থার উদ্দেশ্যের সঙ্গে মেলে কি না;</li>
+          <li>কর্মীর পদ্ধতি কর্মের পদ্ধতির সঙ্গে মানানসই কি না;</li>
+          <li>কর্মীর সম্পূর্ণ উদ্দেশ্য কর্মের উদ্দেশ্যের সঙ্গে মেলে কি না।</li>
+        </ul>
+
+        <p>কর্ম ও কর্মীর উদ্দেশ্য আলাদা হলে তাদের মধ্যে দ্বন্দ্ব বা সংঘাত তৈরি হয়। যেমন, বাগান করার উদ্দেশ্য হতে পারে বাগানে ফুল ফোটানো এবং বাগানকে সুন্দর রাখা। কর্মীর উদ্দেশ্যও ফুল ফোটানো হতে পারে; কিন্তু সেই ফুল চুরি করে বাজারে বিক্রি করে বাড়তি পয়সা আয় করতে চাইলে তার উদ্দেশ্য বাগান সুন্দর ও অক্ষত রাখার উদ্দেশ্যের সঙ্গে সংঘাতে জড়ায়। তাই শুধু উদ্দেশ্যের একটি অংশ মেলে কি না দেখলেই হবে না। কর্মীর সম্পূর্ণ উদ্দেশ্য কোথায় কর্মের উদ্দেশ্য থেকে আলাদা হচ্ছে এবং কোথায় কর্তার ব্যবস্থার সঙ্গে অসামঞ্জস্য তৈরি করছে, সেটাও দেখতে হবে।</p>
+
+        <p>এই সামঞ্জস্য ও সামঞ্জস্যহীনতা বিচার করার কারণ হলো: বিশ্বচরাচরের যে অন্তর্নিহিত ব্যবস্থা তার অস্তিত্ব ধরে রাখে ও রক্ষা করে, সেই ব্যবস্থাই তার আশ্রয়ে থাকা বস্তু, উদ্ভিদ, প্রাণী ও মানুষকে টিকিয়ে রাখে ও রক্ষা করে। আমাদের কাজ বা কাজের পেছনের মানসিকতা—অর্থাৎ অভিপ্রায়—যদি সেই ব্যবস্থার কাজে বাধা দেয়, তবে ব্যবস্থা তার কাজ অবাধে করতে পারবে না এবং তার উদ্দেশ্য পূরণেও ব্যর্থ হবে।</p>
+
+        <p>এখানে <strong>“bug”, “reset” ও “default setting”</strong> রূপক। আমাদের কাজের কারণে বিশ্বচরাচরের অন্তর্নিহিত ব্যবস্থায় যেন “bug” ঢুকে পড়লে, সেই ব্যবস্থা নিজেকে bug-মুক্ত করে নিজের default setting-এ ফিরিয়ে নেবে—অর্থাৎ স্বাভাবিক কাজ ও ভারসাম্য পুনরুদ্ধার করবে। এই প্রক্রিয়ার পরিণতি সেই ব্যাঘাতের সঙ্গে যুক্তদের ভোগ করতে হবে।</p>
+
+        <p>আরও তিনটি বিষয় মনে রাখতে হবে:</p>
+        <ol>
+          <li>আমরা যে কাজই করি, তা শেষ পর্যন্ত বিশ্বচরাচরের চলমান কর্মের একটি ক্ষুদ্র অংশ। বিশ্বচরাচরের অন্তর্নিহিত ব্যবস্থার মাধ্যমে এই কর্ম অবিরাম চলছে—বিশ্বচরাচরের অস্তিত্ব এবং তার আশ্রয়ে থাকা বস্তু, উদ্ভিদ, প্রাণী ও মানুষকে টিকিয়ে রাখতে ও রক্ষা করতে।</li>
+          <li>বিশ্বচরাচরের অন্তর্নিহিত ব্যবস্থা নিজে থেকে চলে, সামঞ্জস্য বজায় রাখে, ভারসাম্য রক্ষা করে এবং চিরকাল সক্রিয় থাকে।</li>
+          <li>নিজেদের অস্তিত্ব টিকিয়ে রাখতে ও রক্ষা করতে হলে আমাদের কর্ম ও কর্মীর উদ্দেশ্যকে সবসময় বিশ্বচরাচরের অন্তর্নিহিত ব্যবস্থার সঙ্গে সামঞ্জস্যপূর্ণ রাখতে হবে।</li>
+        </ol>
+
+        <p class="closing">জীবনে কাজে ব্যর্থ হওয়া বা কাঙ্ক্ষিত ফল পাওয়ার পর প্রতিকূল পরিস্থিতির মুখোমুখি হওয়ার একমাত্র কারণ হলো—আমাদের কাজ, কাজের পদ্ধতি বা কাজের উদ্দেশ্য বিশ্বচরাচরের অন্তর্নিহিত ব্যবস্থার সঙ্গে সামঞ্জস্যপূর্ণ না থাকা।</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</footer>
+
+  <script>
+    const copyButton = document.getElementById('copy-button');
+    const messageContent = document.getElementById('message-content');
+    copyButton.addEventListener('click', async () => {
+      const text = messageContent.innerText.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const helper = document.createElement('textarea');
+        helper.value = text;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      }
+      copyButton.textContent = 'Copied!';
+      window.setTimeout(() => { copyButton.textContent = 'Copy Text'; }, 1800);
+    });
+  </script>
+</body>
+</html>
