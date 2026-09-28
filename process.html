@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Observation থেকে Consequence</title>
+<link rel="icon" href="spm.ico">
+<style>
+:root{--ink:#202a37;--muted:#647184;--paper:#f4f6f9;--card:#fff;--line:#e2e7ef;--accent:#155eef;--accent-soft:#edf3ff;--green:#17795b;--green-soft:#eaf7f1;--shadow:0 12px 34px rgba(24,39,75,.07);--radius:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:22px}
+body{margin:0;background:radial-gradient(900px 420px at 85% -160px,rgba(21,94,239,.12),transparent 70%),var(--paper);color:var(--ink);font:16px/1.8 Inter,"Noto Sans Bengali","Nirmala UI","Segoe UI",sans-serif}
+.shell{width:min(1240px,calc(100% - 40px));margin:0 auto}
+.masthead{padding:46px 0 26px}
+.masthead-inner{padding:clamp(24px,5vw,46px);border:1px solid rgba(255,255,255,.8);border-radius:26px;background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(246,249,255,.92));box-shadow:var(--shadow)}
+.kicker{color:var(--accent);font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{margin:8px 0 0;font-size:clamp(2rem,5vw,3.25rem);line-height:1.25;letter-spacing:-.025em}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;align-items:start;padding-bottom:48px}
+.prompt-nav{position:sticky;top:18px;padding:18px 13px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.9);box-shadow:var(--shadow);max-height:calc(100vh - 36px);overflow:auto}
+.nav-title{margin:0 9px 10px;color:var(--muted);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.nav-links{display:grid;gap:2px}
+.prompt-nav a{display:flex;gap:9px;align-items:flex-start;padding:9px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:.86rem;line-height:1.55}
+.prompt-nav a:hover,.prompt-nav a:focus-visible{background:var(--accent-soft);color:var(--accent);outline:0}
+.prompt-nav a span{color:var(--accent);font-size:.75rem;font-weight:800;font-variant-numeric:tabular-nums;padding-top:2px}
+main{min-width:0}
+.intro-card{margin-bottom:16px}
+.exchange{display:grid;gap:12px;margin-bottom:23px;scroll-margin-top:18px}
+.card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
+.prompt-card{border-left:4px solid var(--accent)}
+.answer-card,.intro-card{border-left:4px solid var(--green)}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:#fbfcfe}
+.eyebrow{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:.78rem;font-weight:800;letter-spacing:.04em}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.prompt-dot{background:var(--accent)} .answer-dot{background:var(--green)}
+.copy-button{appearance:none;border:1px solid #cbd8f4;border-radius:10px;background:var(--accent-soft);color:#1749aa;padding:8px 12px;font:inherit;font-size:.77rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:transform .15s ease,background .15s ease}
+.copy-button.secondary{border-color:#cde7db;background:var(--green-soft);color:#146447}
+.copy-button:hover{transform:translateY(-1px)}
+.copy-button:focus-visible{outline:3px solid rgba(21,94,239,.3);outline-offset:2px}
+.copy-button.is-copied{background:#e4f6e9;color:#176b37;border-color:#a7d7b4}
+.prompt-text{padding:12px 22px 16px}
+.prompt-text h2{margin:0;font-size:1.2rem;line-height:1.55;color:#1a2e4c}
+.card-content{padding:clamp(20px,3.1vw,32px);overflow-wrap:anywhere}
+.card-content>:first-child{margin-top:0} .card-content>:last-child{margin-bottom:0}
+.card-content p{margin:0 0 1em}
+.card-content h2,.card-content h3,.card-content h4{margin:1.45em 0 .6em;line-height:1.45}
+.card-content h2{font-size:1.35rem} .card-content h3{font-size:1.12rem;color:#243b62} .card-content h4{font-size:1rem}
+.card-content ul,.card-content ol{padding-left:1.55em;margin:.5em 0 1.1em}
+.card-content li{padding-left:.22em;margin:.32em 0}
+.card-content blockquote{margin:1.1em 0;padding:14px 18px;border-left:3px solid #9ab7f7;border-radius:0 12px 12px 0;background:#f4f7ff;color:#29384d}
+.card-content blockquote>:last-child{margin-bottom:0}
+.card-content strong{color:#1a2e4c}
+.answer-card .card-content blockquote,.intro-card .card-content blockquote{background:#f3f8f5;border-left-color:#8ec8ab}
+.separator{height:1px;border:0;background:var(--line);margin:1.5em 0}
+.table-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:12px;margin:1em 0}
+table{width:100%;border-collapse:collapse} th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f5f7fb;font-size:.9rem} tbody tr:last-child td{border-bottom:0}
+footer{border-top:1px solid var(--line);padding:23px 12px 32px;color:var(--muted);text-align:center;font-size:.83rem}
+@media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr);gap:16px}.prompt-nav{position:static;max-height:none;padding:13px}.nav-title{margin-bottom:8px}.nav-links{display:flex;gap:7px;overflow-x:auto;padding-bottom:3px;scrollbar-width:thin}.prompt-nav a{flex:0 0 auto;max-width:260px;border:1px solid var(--line);background:#fff}}
+@media(max-width:560px){body{font-size:15px;line-height:1.75}.shell{width:min(100% - 24px,1240px)}.masthead{padding:20px 0 16px}.masthead-inner{padding:22px 18px;border-radius:18px}.layout{padding-bottom:30px}.prompt-nav{padding:11px}.prompt-nav a{max-width:220px;font-size:.8rem;padding:8px}.card{border-radius:15px}.card-top{padding:11px 13px}.copy-button{padding:7px 9px;font-size:.71rem}.prompt-text{padding:10px 15px 14px}.prompt-text h2{font-size:1.05rem}.card-content{padding:18px 15px 20px}.table-wrap{overflow:visible;border:0}table,thead,tbody,tr,th,td{display:block;width:100%}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}tbody{display:grid;gap:10px}tbody tr{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}td{display:grid;grid-template-columns:minmax(92px,38%) minmax(0,1fr);gap:9px;padding:10px 12px;border-bottom:1px solid var(--line)}td::before{content:attr(data-label);color:var(--muted);font-size:.79rem;font-weight:800}tbody tr:last-child td{border-bottom:1px solid var(--line)}tbody tr td:last-child{border-bottom:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="masthead shell"><div class="masthead-inner"><div class="kicker">Karma proposition</div><h1>Observation → Consequence</h1></div></header>
+<div class="shell layout">
+<nav class="prompt-nav" aria-label="প্রম্পট নেভিগেশন"><p class="nav-title">প্রম্পট সূচি</p><div class="nav-links"><a href="#prompt-01"><span>01</span>Observation (পর্যবেক্ষণ):</a><a href="#prompt-02"><span>02</span>Pattern (প্যাটার্ন):</a><a href="#prompt-03"><span>03</span>Mechanism (মেকানিজম):</a><a href="#prompt-04"><span>04</span>Operational Rule (পরিচালন নিয়ম বা শর্ত):</a><a href="#prompt-05"><span>05</span>Consequence (পরিণতি):</a></div></nav>
+<main>
+<article class="card intro-card">
+  <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>ভূমিকা</div>
+    <button class="copy-button secondary" type="button" data-copy="answer">Copy Answer</button></div>
+  <div class="card-content"><p>ইউনিভার্স-এর অপারেটিং সিস্টেমের সাথে নিজের কর্মকে এলাইন (align) করার প্রস্তাবটিকে একটি গভীর ও প্রাক্টিক্যাল অপারেটিং নো-হাউ (practical operating know-how) হিসেবে দাঁড় করানোর জন্য আপনাকে একটি নির্দিষ্ট ক্রম বা ধাপ অনুসরণ করতে হবে। নিচে observation থেকে consequence পর্যন্ত পুরো প্রক্রিয়াটি ধাপে ধাপে সাজিয়ে দেওয়া হলো:</p></div>
+</article>
+
+    <section class="exchange" aria-labelledby="prompt-01">
+      <article class="card prompt-card" id="prompt-01">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 01</div>
+          <button class="copy-button" type="button" data-copy="prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>Observation (পর্যবেক্ষণ):</h2></div>
+      </article>
+      <article class="card answer-card">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 01</div>
+          <button class="copy-button secondary" type="button" data-copy="answer">Copy Answer</button></div>
+        <div class="card-content answer-content"><p>আমরা দৈনন্দিন জীবনে বা ক্যারিয়ারে অনেক সময় দেখি যে, আমাদের শতভাগ ডেডিকেশন, সঠিক প্ল্যান ও পর্যাপ্ত স্কিল থাকা সত্ত্বেও কোনো উদ্যোগ বা প্রজেক্ট সফলতার ঠিক দ্বারপ্রান্তে এসে হঠাৎ মুখ থুবড়ে পড়ে বা ক্র্যাশ করে।</p></div>
+      </article>
+    </section>
+    <section class="exchange" aria-labelledby="prompt-02">
+      <article class="card prompt-card" id="prompt-02">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 02</div>
+          <button class="copy-button" type="button" data-copy="prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>Pattern (প্যাটার্ন):</h2></div>
+      </article>
+      <article class="card answer-card">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 02</div>
+          <button class="copy-button secondary" type="button" data-copy="answer">Copy Answer</button></div>
+        <div class="card-content answer-content"><p>এই ঘটনার পেছনে একটি সাধারণ প্যাটার্ন রয়েছে—আমরা সাধারণত মনে করি স্কিল আর খাটুনিই শেষ কথা। কিন্তু সূক্ষ্মভাবে খেয়াল করলে দেখা যায়, এই ব্যর্থতাগুলো বিচ্ছিন্ন কোনো ঘটনা নয়; বরং যেকোনো কাজের পেছনে একটি অদৃশ্য ব্যাক-এন্ড অপারেটিং সিস্টেম বা অন্তর্নিহিত ব্যবস্থা কাজ করে, যা অবহেলা করলেই সিস্টেম ক্র্যাশ করে।</p></div>
+      </article>
+    </section>
+    <section class="exchange" aria-labelledby="prompt-03">
+      <article class="card prompt-card" id="prompt-03">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 03</div>
+          <button class="copy-button" type="button" data-copy="prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>Mechanism (মেকানিজম):</h2></div>
+      </article>
+      <article class="card answer-card">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 03</div>
+          <button class="copy-button secondary" type="button" data-copy="answer">Copy Answer</button></div>
+        <div class="card-content answer-content"><p>এই সিস্টেমের অন্তর্নিহিত মেকানিজমটি তিনটি সত্তার ওপর দাঁড়িয়ে আছে—<strong>কর্ম</strong> (কাজ নিজে), <strong>কর্মী</strong> (যিনি কাজটি করছেন), এবং <strong>কর্তা</strong> (পুরো বিশ্বচরাচর বা ইকোসিস্টেমকে টিকিয়ে রাখা বৃহত্তর ন্যাচারাল অর্ডার)। এই প্রতিটি সত্তার আলাদা অপারেটিং সিস্টেম রয়েছে, যা মূলত <strong>Architecture</strong> (কাঠামো), <strong>Method</strong> (পদ্ধতি), এবং <strong>Operating Rules</strong> (পরিচালন-নিয়ম)—এই তিনটি জিনিস দিয়ে তৈরি।</p></div>
+      </article>
+    </section>
+    <section class="exchange" aria-labelledby="prompt-04">
+      <article class="card prompt-card" id="prompt-04">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 04</div>
+          <button class="copy-button" type="button" data-copy="prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>Operational Rule (পরিচালন নিয়ম বা শর্ত):</h2></div>
+      </article>
+      <article class="card answer-card">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 04</div>
+          <button class="copy-button secondary" type="button" data-copy="answer">Copy Answer</button></div>
+        <div class="card-content answer-content"><p>সিস্টেমে কোনো 'বাগ' বা ত্রুটি এড়াতে এবং কাজকে সফল করতে হলে চারটি সুনির্দিষ্ট শর্তের সামঞ্জস্য নিশ্চিত করতে হয়:</p>
+<ul><li><strong>পদ্ধতির সামঞ্জস্য:</strong> কাজের মেথড যেন প্রকৃতির বা বৃহত্তর সিস্টেমের নিয়মের বিরুদ্ধে না যায়।</li><li><strong>উদ্দেশ্যের সামঞ্জস্য:</strong> কাজের চূড়ান্ত ফল যেন সমাজ ও জীবনকে ধ্বংস না করে, বরং টিকিয়ে রাখা ও রক্ষা করার অনুকূলে হয়।</li><li><strong>দক্ষতার মিল:</strong> কর্মীর স্কিল ও কাজের কাঠামোগত পদ্ধতি যেন একে অপরের সাথে হুবহু মিলে যায়।</li><li><strong>গোপন স্বার্থহীনতা (সংঘাতহীনতা):</strong> কর্মীর পেছনের গোপন বা লুকানো উদ্দেশ্য যেন মূল কাজের লক্ষ্যের সাথে সাংঘর্ষিক না হয় (অর্থাৎ কোনো হিডেন ইনকসিস্টেন্সি বা লুকানো অসামঞ্জস্য না থাকে).</li></ul></div>
+      </article>
+    </section>
+    <section class="exchange" aria-labelledby="prompt-05">
+      <article class="card prompt-card" id="prompt-05">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 05</div>
+          <button class="copy-button" type="button" data-copy="prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>Consequence (পরিণতি):</h2></div>
+      </article>
+      <article class="card answer-card">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 05</div>
+          <button class="copy-button secondary" type="button" data-copy="answer">Copy Answer</button></div>
+        <div class="card-content answer-content"><p>আপনি যদি বাহ্যিকভাবে কাজ ঠিক রেখেও ভেতরে কোনো গোপন স্বার্থ বা ত্রুটির মাধ্যমে সিস্টেমে 'বাগ' ঢুকিয়ে দেন, তবে বৃহত্তর সিস্টেম চুপ করে বসে থাকে না। কার্যকারণ শৃঙ্খল (Executed Action → Result → Impact → Situation) অনুযায়ী সিস্টেম স্বয়ংক্রিয়ভাবে একটি রিবুট বা <strong>'Reset to Default Setting'</strong> প্রক্রিয়া চালায়। ফলে দীর্ঘমেয়াদে সেই ত্রুটি বা বাগ ডিলিট হয়ে যায় এবং কর্মীকে ব্যর্থতা, চাকরি হারানো বা ক্যারিয়ার পতনের মতো গুরুতর পরিণতি ভোগ করতে হয়।</p>
+<p>এইভাবে পর্যবেক্ষণ থেকে শুরু করে প্যাটার্ন, মেকানিজম, রুল এবং পরিণতির মধ্য দিয়ে এগোলে Karma আর কোনো অন্ধ বিশ্বাস থাকে না, বরং এটি একটি সম্পূর্ণ বিজ্ঞানসম্মত ও investigated proposition হিসেবে প্রতিষ্ঠিত হয়।</p></div>
+      </article>
+    </section>
+</main>
+</div>
+<footer>Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</footer>
+<script>
+(function(){
+  function fallbackCopy(text){
+    var field=document.createElement("textarea");
+    field.value=text;field.style.position="fixed";field.style.left="-9999px";document.body.appendChild(field);
+    field.select();var ok=false;
+    try{ok=document.execCommand("copy")}catch(e){ok=false}
+    field.remove();return ok;
+  }
+  document.addEventListener("click",async function(event){
+    var button=event.target.closest("[data-copy]");if(!button)return;
+    var card=button.closest(".card");
+    var source=button.dataset.copy==="prompt"?card.querySelector(".prompt-text"):card.querySelector(".answer-content, .card-content");
+    var text=source.innerText.trim(),ok=false;
+    try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);ok=true}else{ok=fallbackCopy(text)}}
+    catch(e){ok=fallbackCopy(text)}
+    var label=button.dataset.copy==="prompt"?"Copy Prompt":"Copy Answer";
+    button.textContent=ok?"Copied!":"Copy failed";button.classList.toggle("is-copied",ok);
+    setTimeout(function(){button.textContent=label;button.classList.remove("is-copied")},1600);
+  });
+})();
+</script>
+</body>
+</html>
