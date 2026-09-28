@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="My Content Launch Strategy — Core Resource থেকে Reader Questions, Blog Answers এবং Social Content তৈরির reference guide.">
+  <title>My Content Launch Strategy</title>
+  <style>
+    :root{
+      --bg:#f4f7f6;
+      --surface:#ffffff;
+      --surface-soft:#eef8f5;
+      --text:#17312d;
+      --muted:#60736f;
+      --accent:#0f766e;
+      --accent-dark:#0a5c56;
+      --accent-light:#d8f1eb;
+      --line:#dbe7e4;
+      --shadow:0 10px 30px rgba(20,60,55,.08);
+      --radius:18px;
+      --max:860px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Noto Sans Bengali","Noto Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.8;
+      font-size:16px;
+      -webkit-text-size-adjust:100%;
+    }
+    a{color:inherit}
+    .wrap{width:min(calc(100% - 28px),var(--max));margin:auto}
+    header{
+      background:linear-gradient(145deg,#0f766e,#124e4a);
+      color:#fff;
+      padding:clamp(34px,8vw,72px) 0 34px;
+    }
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:10px;
+      padding:5px 10px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      font-size:.78rem;
+      letter-spacing:.04em;
+      color:#e6fffa;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(1.9rem,7vw,3.15rem);
+      line-height:1.18;
+      letter-spacing:-.02em;
+    }
+    .subtitle{
+      margin:14px 0 0;
+      max-width:700px;
+      color:#dff7f2;
+      font-size:clamp(1rem,3.5vw,1.16rem);
+    }
+    nav{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(244,247,246,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-scroll{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding:10px 0;
+      scrollbar-width:none;
+    }
+    .nav-scroll::-webkit-scrollbar{display:none}
+    nav a{
+      flex:0 0 auto;
+      text-decoration:none;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 12px;
+      font-size:.84rem;
+      color:var(--accent-dark);
+      white-space:nowrap;
+    }
+    main{padding:24px 0 52px}
+    section{
+      scroll-margin-top:76px;
+      margin:0 0 18px;
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:clamp(20px,5vw,32px);
+    }
+    .section-number{
+      color:var(--accent);
+      font-weight:800;
+      font-size:.8rem;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+    h2{
+      margin:3px 0 12px;
+      font-size:clamp(1.35rem,5vw,1.8rem);
+      line-height:1.3;
+    }
+    h3{
+      margin:24px 0 8px;
+      font-size:1.08rem;
+      line-height:1.45;
+    }
+    p{margin:9px 0}
+    ul{margin:8px 0 8px;padding-left:1.25rem}
+    li{margin:5px 0}
+    .quote{
+      margin:16px 0;
+      padding:16px 18px;
+      background:var(--surface-soft);
+      border-left:4px solid var(--accent);
+      border-radius:0 12px 12px 0;
+      font-weight:700;
+    }
+    .flow{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:7px;
+      margin:15px 0;
+    }
+    .node{
+      background:var(--accent-light);
+      color:var(--accent-dark);
+      border:1px solid #bde3da;
+      border-radius:11px;
+      padding:8px 11px;
+      font-weight:750;
+      line-height:1.35;
+    }
+    .arrow{color:var(--accent);font-weight:900}
+    .steps{counter-reset:step}
+    .step{
+      position:relative;
+      margin:14px 0;
+      padding:17px 17px 17px 58px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fbfdfc;
+    }
+    .step:before{
+      counter-increment:step;
+      content:counter(step);
+      position:absolute;
+      left:16px;
+      top:17px;
+      width:28px;height:28px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:var(--accent);
+      color:white;
+      font-weight:800;
+      line-height:1;
+    }
+    .step h3{margin:0 0 6px}
+    .principles{
+      display:grid;
+      gap:9px;
+      margin-top:14px;
+    }
+    .principle{
+      display:grid;
+      grid-template-columns:30px 1fr;
+      gap:10px;
+      align-items:start;
+      padding:11px 12px;
+      border-radius:12px;
+      background:#f8fbfa;
+      border:1px solid var(--line);
+    }
+    .principle b{
+      display:grid;place-items:center;
+      width:28px;height:28px;
+      background:var(--accent-light);
+      color:var(--accent-dark);
+      border-radius:50%;
+      font-size:.82rem;
+    }
+    .three{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    .card{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fbfdfc;
+    }
+    .card strong{display:block;color:var(--accent-dark);margin-bottom:4px}
+    .formula{
+      padding:16px;
+      margin:12px 0;
+      border-radius:14px;
+      background:#153f3a;
+      color:#f3fffc;
+      overflow-wrap:anywhere;
+      font-weight:700;
+    }
+    footer{
+      padding:8px 0 36px;
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+    }
+    @media (max-width:680px){
+      body{font-size:15.5px}
+      .wrap{width:min(calc(100% - 20px),var(--max))}
+      section{border-radius:15px;padding:19px 16px}
+      .three{grid-template-columns:1fr}
+      .flow{align-items:stretch}
+      .node{flex:1 1 100%}
+      .arrow{width:100%;text-align:center;transform:rotate(90deg)}
+      .step{padding-left:54px}
+    }
+    @media print{
+      nav{display:none}
+      body{background:#fff}
+      section{box-shadow:none;break-inside:avoid}
+      header{background:#fff;color:#17312d;border-bottom:2px solid #0f766e}
+      .subtitle{color:#60736f}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">REFERENCE GUIDE</div>
+    <h1>My Content Launch Strategy</h1>
+    <p class="subtitle">Core Resource থেকে Reader Questions, Blog Answers এবং Social Content—একটি সমন্বিত Content Launch System.</p>
+  </div>
+</header>
+
+<nav aria-label="Page navigation">
+  <div class="wrap nav-scroll">
+    <a href="#principle">মূল নীতি</a>
+    <a href="#production">Production Order</a>
+    <a href="#journey">Reader Journey</a>
+    <a href="#logic">Production Logic</a>
+    <a href="#rules">Strategic Principles</a>
+    <a href="#core">Core Flow</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="principle">
+    <div class="section-number">Foundation</div>
+    <h2>মূল নীতি</h2>
+    <div class="quote">Content তৈরি হবে platform অনুযায়ী নয়; Reader-এর Understanding Journey অনুযায়ী।</div>
+    <p>Content Production Order এবং Reader Consumption Order এক নয়।</p>
+  </section>
+
+  <section id="production">
+    <div class="section-number">Content Production Order</div>
+    <h2>Content Production Order</h2>
+
+    <div class="steps">
+      <article class="step">
+        <h3>Step 1 — Create the Core Resource</h3>
+        <p>প্রথমে একটি সম্পূর্ণ PDF/eBook তৈরি ও প্রকাশ করা হবে:</p>
+        <div class="quote">“Karma Proposition”</div>
+        <p>এটি হবে মূল foundational resource—যেখানে proposition-টি সম্পূর্ণভাবে বোঝার এবং প্রয়োগ করার জন্য প্রয়োজনীয় resource থাকবে।</p>
+        <p><strong>PDF/eBook-এর মূল ভূমিকা:</strong></p>
+        <div class="quote">“এই কাজটি করার জন্য প্রয়োজনীয় সম্পূর্ণ resource এখানে।”</div>
+        <p>PDF/eBook হবে পুরো Content Ecosystem-এর মূল reference point.</p>
+      </article>
+
+      <article class="step">
+        <h3>Step 2 — Identify the Reader’s Questions</h3>
+        <p>PDF/eBook-এর content থেকে identify করতে হবে:</p>
+        <div class="quote">“একজন Reader এটি পড়ার পরে স্বাভাবিকভাবে কী কী প্রশ্ন করতে পারেন?”</div>
+        <p>এই প্রশ্নগুলো হবে Blog Content-এর মূল source.</p>
+        <p>প্রশ্ন তৈরি করার সময় শুধু সরাসরি প্রশ্ন নয়, বরং PDF-এর বক্তব্য থেকে উদ্ভূত:</p>
+        <ul>
+          <li>নতুন প্রশ্ন</li>
+          <li>অসম্পূর্ণ understanding থেকে তৈরি প্রশ্ন</li>
+          <li>প্রয়োগ করতে গিয়ে তৈরি প্রশ্ন</li>
+          <li>সিদ্ধান্ত নিতে গিয়ে তৈরি প্রশ্ন</li>
+          <li>সমস্যা সমাধান করতে গিয়ে তৈরি প্রশ্ন</li>
+        </ul>
+        <p>identify করতে হবে।</p>
+        <div class="flow">
+          <span class="node">Core Resource</span><span class="arrow">→</span><span class="node">Reader’s Questions</span>
+        </div>
+      </article>
+
+      <article class="step">
+        <h3>Step 3 — Create Blog Answers</h3>
+        <p>প্রতিটি গুরুত্বপূর্ণ Reader Question-এর জন্য একটি standalone Blog তৈরি করতে হবে।</p>
+        <p>Blog-এর primary job হবে প্রশ্নটির যথাযথ উত্তর দেওয়া এবং সেই উত্তরটিকে যথেষ্টভাবে বোঝানো।</p>
+        <p><strong>Blog-এর structural logic:</strong></p>
+        <div class="formula">Question → Reasoning → Understanding → Next Necessary Question</div>
+        <p>Blog শুধু PDF-এর summary হবে না।</p>
+        <p>Blog-কে নিজের নির্দিষ্ট প্রশ্নের একটি যথেষ্ট ও মূল্যবান উত্তর দিতে হবে।</p>
+        <p>Reader-কে PDF/eBook-এর দিকে পাঠানো Blog-এর primary purpose নয়।</p>
+        <p>যদি প্রশ্নটির উত্তর বৃহত্তর Karma Proposition-এর একটি অংশ হয়, এবং সেই বৃহত্তর understanding-এর জন্য মূল resource প্রয়োজন হয়, তখন PDF/eBook হবে reader-এর natural next step.</p>
+        <div class="flow">
+          <span class="node">Blog</span><span class="arrow">→</span><span class="node">Complete the Question</span>
+        </div>
+        <div class="flow">
+          <span class="node">PDF/eBook</span><span class="arrow">→</span><span class="node">Complete the Framework</span>
+        </div>
+      </article>
+
+      <article class="step">
+        <h3>Step 4 — Create Social Media Content</h3>
+        <p>Blog-এর প্রশ্নগুলোকে কেন্দ্র করে Social Media Content তৈরি করতে হবে।</p>
+        <p>Social Media-এর primary job answer দেওয়া নয়।</p>
+        <p>এর job হলো Reader-কে বুঝতে সাহায্য করা:</p>
+        <div class="quote">“এই প্রশ্ন / কাজ / issue-টি কেন গুরুত্বপূর্ণ?”</div>
+        <p><strong>প্রতিটি Social Content-এর underlying structure:</strong></p>
+        <div class="formula">Question / Work / Issue → Presence or Absence → Impact → Gravity</div>
+        <p>এখানে Gravity বলতে বোঝাবে বিষয়টির:</p>
+        <ul>
+          <li>Place</li>
+          <li>Importance</li>
+          <li>Value</li>
+        </ul>
+        <p>অর্থাৎ Reader যেন বুঝতে পারেন:</p>
+        <div class="quote">“এই বিষয়টি আমার জন্য কেন গুরুত্বপূর্ণ এবং এটিকে ignore করলে বা যথাযথভাবে handle না করলে কী হতে পারে?”</div>
+        <p>Social Media-এর উদ্দেশ্য হবে relevant curiosity এবং question তৈরি বা activate করা—complete answer দেওয়া নয়।</p>
+      </article>
+
+      <article class="step">
+        <h3>Step 5 — Build the Reader Journey</h3>
+        <p>Content-এর final reader journey হবে:</p>
+        <div class="flow">
+          <span class="node">Social Media</span><span class="arrow">→</span>
+          <span class="node">Question</span><span class="arrow">→</span>
+          <span class="node">Blog</span><span class="arrow">→</span>
+          <span class="node">Deeper Understanding</span><span class="arrow">→</span>
+          <span class="node">PDF/eBook</span><span class="arrow">→</span>
+          <span class="node">Complete Resource</span>
+        </div>
+        <p><strong>অর্থাৎ:</strong></p>
+        <ul>
+          <li>Social Media প্রশ্নটির গুরুত্ব তৈরি করবে।</li>
+          <li>Blog প্রশ্নটির উত্তর ও প্রয়োজনীয় understanding দেবে।</li>
+          <li>PDF/eBook পুরো framework এবং কাজটি করার জন্য প্রয়োজনীয় complete resource দেবে।</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="logic">
+    <div class="section-number">System Logic</div>
+    <h2>Production Logic</h2>
+    <p>প্রতিটি Content Piece আলাদাভাবে তৈরি হবে না।</p>
+    <p>একটি Core Resource থেকে ধারাবাহিকভাবে Content Ecosystem তৈরি হবে:</p>
+    <div class="formula">PDF/eBook → Reader Questions → Blog Answers → Social Content</div>
+    <p>অর্থাৎ:</p>
+    <div class="flow">
+      <span class="node">One Core Resource</span><span class="arrow">→</span>
+      <span class="node">Multiple Questions</span><span class="arrow">→</span>
+      <span class="node">Multiple Blog Answers</span><span class="arrow">→</span>
+      <span class="node">Multiple Social Content Pieces</span>
+    </div>
+  </section>
+
+  <section id="rules">
+    <div class="section-number">Decision Rules</div>
+    <h2>Important Strategic Principles</h2>
+    <div class="principles">
+      <div class="principle"><b>1</b><div>Content-এর কেন্দ্র Platform নয়, <strong>Reader-এর Question</strong>।</div></div>
+      <div class="principle"><b>2</b><div>PDF/eBook হবে <strong>Core Resource</strong>।</div></div>
+      <div class="principle"><b>3</b><div>Blog হবে <strong>Question-specific Understanding Resource</strong>।</div></div>
+      <div class="principle"><b>4</b><div>Social Media হবে <strong>Significance and Gravity Layer</strong>।</div></div>
+      <div class="principle"><b>5</b><div>Social Media-তে সব উত্তর দিয়ে দেওয়া যাবে না, কারণ তার কাজ answer delivery নয়; relevant question এবং তার গুরুত্বকে সামনে আনা।</div></div>
+      <div class="principle"><b>6</b><div>Blog-কে শুধুমাত্র PDF-এর promotional gateway বানানো যাবে না। প্রতিটি Blog-কে তার নিজের প্রশ্নের যথেষ্ট উত্তর দিতে হবে।</div></div>
+      <div class="principle"><b>7</b><div>PDF/eBook-এ পাঠানো হবে তখনই, যখন broader framework বা complete resource-এর প্রয়োজন আছে।</div></div>
+      <div class="principle"><b>8</b><div>Content production হবে Core Resource থেকে Reader Questions-এর দিকে এবং সেখান থেকে Blog ও Social-এর দিকে।</div></div>
+      <div class="principle"><b>9</b><div>Reader consumption হবে সাধারণত Social → Blog → PDF/eBook-এর দিকে।</div></div>
+      <div class="principle"><b>10</b><div>Structure-এর উদ্দেশ্য হবে Reader-এর understanding journey-কে এগিয়ে নিয়ে যাওয়া; platform-এর জন্য content-কে artificially ভাঙা নয়।</div></div>
+    </div>
+  </section>
+
+  <section id="core">
+    <div class="section-number">Core Model</div>
+    <h2>Core Flow</h2>
+
+    <h3>Content Creation</h3>
+    <div class="flow">
+      <span class="node">Core Resource</span><span class="arrow">→</span>
+      <span class="node">Reader Questions</span><span class="arrow">→</span>
+      <span class="node">Blog Answers</span><span class="arrow">→</span>
+      <span class="node">Social Content</span>
+    </div>
+
+    <h3>Reader Journey</h3>
+    <div class="flow">
+      <span class="node">Social</span><span class="arrow">→</span>
+      <span class="node">Significance</span><span class="arrow">→</span>
+      <span class="node">Question</span><span class="arrow">→</span>
+      <span class="node">Blog</span><span class="arrow">→</span>
+      <span class="node">Understanding</span><span class="arrow">→</span>
+      <span class="node">PDF/eBook</span><span class="arrow">→</span>
+      <span class="node">Capability</span>
+    </div>
+
+    <h3>The Central Strategic Idea</h3>
+    <div class="three">
+      <div class="card">
+        <strong>Social Media</strong>
+        creates significance.
+      </div>
+      <div class="card">
+        <strong>Blog</strong>
+        creates understanding.
+      </div>
+      <div class="card">
+        <strong>PDF/eBook</strong>
+        creates capability.
+      </div>
+    </div>
+
+    <div class="quote">
+      এবং এই তিনটির কেন্দ্রবিন্দু হলো:<br>
+      <strong>Reader’s Question.</strong>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  My Content Launch Strategy · Reference Guide
+</footer>
+
+</body>
+</html>
