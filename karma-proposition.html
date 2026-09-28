@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Karma proposition Strategy</title>
+<link rel="icon" href="spm.ico">
+<style>
+:root{--ink:#202a37;--muted:#647184;--paper:#f4f6f9;--card:#fff;--line:#e2e7ef;--accent:#155eef;--accent-soft:#edf3ff;--green:#17795b;--green-soft:#eaf7f1;--shadow:0 12px 34px rgba(24,39,75,.07);--radius:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:22px}
+body{margin:0;background:radial-gradient(900px 420px at 85% -160px,rgba(21,94,239,.12),transparent 70%),var(--paper);color:var(--ink);font:16px/1.8 Inter,"Noto Sans Bengali","Nirmala UI","Segoe UI",sans-serif}
+.shell{width:min(1240px,calc(100% - 40px));margin:0 auto}
+.masthead{padding:46px 0 26px}
+.masthead-inner{padding:clamp(24px,5vw,46px);border:1px solid rgba(255,255,255,.8);border-radius:26px;background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(246,249,255,.92));box-shadow:var(--shadow)}
+.kicker{color:var(--accent);font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{margin:8px 0 0;font-size:clamp(2rem,5vw,3.25rem);line-height:1.25;letter-spacing:-.025em}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;align-items:start;padding-bottom:48px}
+.prompt-nav{position:sticky;top:18px;padding:18px 13px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.9);box-shadow:var(--shadow);max-height:calc(100vh - 36px);overflow:auto}
+.nav-title{margin:0 9px 10px;color:var(--muted);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.nav-links{display:grid;gap:2px}
+.prompt-nav a{display:flex;gap:9px;align-items:flex-start;padding:9px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:.86rem;line-height:1.55}
+.prompt-nav a:hover,.prompt-nav a:focus-visible{background:var(--accent-soft);color:var(--accent);outline:0}
+.prompt-nav a span{color:var(--accent);font-size:.75rem;font-weight:800;font-variant-numeric:tabular-nums;padding-top:2px}
+main{min-width:0}
+.intro-card{margin-bottom:16px}
+.exchange{display:grid;gap:12px;margin-bottom:23px;scroll-margin-top:18px}
+.card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
+.prompt-card{border-left:4px solid var(--accent)}
+.answer-card,.intro-card{border-left:4px solid var(--green)}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:#fbfcfe}
+.eyebrow{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:.78rem;font-weight:800;letter-spacing:.04em}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.prompt-dot{background:var(--accent)} .answer-dot{background:var(--green)}
+.copy-button{appearance:none;border:1px solid #cbd8f4;border-radius:10px;background:var(--accent-soft);color:#1749aa;padding:8px 12px;font:inherit;font-size:.77rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:transform .15s ease,background .15s ease}
+.copy-button.secondary{border-color:#cde7db;background:var(--green-soft);color:#146447}
+.copy-button:hover{transform:translateY(-1px)}
+.copy-button:focus-visible{outline:3px solid rgba(21,94,239,.3);outline-offset:2px}
+.copy-button.is-copied{background:#e4f6e9;color:#176b37;border-color:#a7d7b4}
+.prompt-text{padding:12px 22px 16px}
+.prompt-text h2{margin:0;font-size:1.2rem;line-height:1.55;color:#1a2e4c}
+.card-content{padding:clamp(20px,3.1vw,32px);overflow-wrap:anywhere}
+.card-content>:first-child{margin-top:0} .card-content>:last-child{margin-bottom:0}
+.card-content p{margin:0 0 1em}
+.card-content h2,.card-content h3,.card-content h4{margin:1.45em 0 .6em;line-height:1.45}
+.card-content h2{font-size:1.35rem} .card-content h3{font-size:1.12rem;color:#243b62} .card-content h4{font-size:1rem}
+.card-content ul,.card-content ol{padding-left:1.55em;margin:.5em 0 1.1em}
+.card-content li{padding-left:.22em;margin:.32em 0}
+.card-content blockquote{margin:1.1em 0;padding:14px 18px;border-left:3px solid #9ab7f7;border-radius:0 12px 12px 0;background:#f4f7ff;color:#29384d}
+.card-content blockquote>:last-child{margin-bottom:0}
+.card-content strong{color:#1a2e4c}
+.answer-card .card-content blockquote,.intro-card .card-content blockquote{background:#f3f8f5;border-left-color:#8ec8ab}
+.separator{height:1px;border:0;background:var(--line);margin:1.5em 0}
+.table-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:12px;margin:1em 0}
+table{width:100%;border-collapse:collapse} th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f5f7fb;font-size:.9rem} tbody tr:last-child td{border-bottom:0}
+.copy-source{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:pre;border:0}
+footer{border-top:1px solid var(--line);padding:23px 12px 32px;color:var(--muted);text-align:center;font-size:.83rem}
+@media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr);gap:16px}.prompt-nav{position:static;max-height:none;padding:13px}.nav-title{margin-bottom:8px}.nav-links{display:flex;gap:7px;overflow-x:auto;padding-bottom:3px;scrollbar-width:thin}.prompt-nav a{flex:0 0 auto;max-width:260px;border:1px solid var(--line);background:#fff}}
+@media(max-width:560px){body{font-size:15px;line-height:1.75}.shell{width:min(100% - 24px,1240px)}.masthead{padding:20px 0 16px}.masthead-inner{padding:22px 18px;border-radius:18px}.layout{padding-bottom:30px}.prompt-nav{padding:11px}.prompt-nav a{max-width:220px;font-size:.8rem;padding:8px}.card{border-radius:15px}.card-top{padding:11px 13px}.copy-button{padding:7px 9px;font-size:.71rem}.prompt-text{padding:10px 15px 14px}.prompt-text h2{font-size:1.05rem}.card-content{padding:18px 15px 20px}.table-wrap{overflow:visible;border:0}table,thead,tbody,tr,th,td{display:block;width:100%}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}tbody{display:grid;gap:10px}tbody tr{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}td{display:grid;grid-template-columns:minmax(92px,38%) minmax(0,1fr);gap:9px;padding:10px 12px;border-bottom:1px solid var(--line)}td::before{content:attr(data-label);color:var(--muted);font-size:.79rem;font-weight:800}tbody tr:last-child td{border-bottom:1px solid var(--line)}tbody tr td:last-child{border-bottom:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="masthead shell"><div class="masthead-inner"><div class="kicker">Karma proposition</div><h1>Karma proposition Strategy</h1></div></header>
+<div class="shell layout">
+<nav class="prompt-nav" aria-label="প্রম্পট নেভিগেশন"><p class="nav-title">প্রম্পট সূচি</p><div class="nav-links"><a href="#prompt-01"><span>01</span>১. আসল সমস্যা “behaviour control” নয়</a><a href="#prompt-02"><span>02</span>২. “Physiology determines behaviour” বলবেন না</a><a href="#prompt-03"><span>03</span>তাহলে আপনার Business/Knowledge Model কী দাঁড়াচ্ছে?</a><a href="#prompt-04"><span>04</span>আরেকটি জিনিস আমি strongly recommend করব</a><a href="#prompt-05"><span>05</span>আপনার পুরো model-টাকে এক লাইনে ধরলে</a><a href="#prompt-06"><span>06</span>আমার একটি শেষ সতর্কতা</a></div></nav>
+<main><article class="card intro-card" id="intro">
+      <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>ভূমিকা</div>
+        <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+      <div class="card-content"><p><strong>আপনার কাজের পদ্ধতিটা মূলত ঠিক দিকেই যাচ্ছে।</strong> বরং আপনার Karma proposition-কে একটি serious body of knowledge ও membership-based practice system-এ পরিণত করার জন্য এই architecture যথেষ্ট শক্তিশালী।</p>
+<p>তবে আমি আপনার reasoning-এ <strong>দুটি জায়গায় সামান্য refinement</strong> করব।</p></div>
+      <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>**আপনার কাজের পদ্ধতিটা মূলত ঠিক দিকেই যাচ্ছে।** বরং আপনার Karma proposition-কে একটি serious body of knowledge ও membership-based practice system-এ পরিণত করার জন্য এই architecture যথেষ্ট শক্তিশালী।
+
+তবে আমি আপনার reasoning-এ **দুটি জায়গায় সামান্য refinement** করব।</textarea>
+    </article><section class="exchange">
+      <article class="card prompt-card" id="prompt-01">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 01</div>
+          <button class="copy-button" type="button" data-copy-label="Copy Prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>১. আসল সমস্যা “behaviour control” নয়</h2></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>১. আসল সমস্যা “behaviour control” নয়</textarea>
+      </article>
+      <article class="card answer-card" id="answer-01">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 01</div>
+          <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+        <div class="card-content"><p>আপনার proposition-এর গুরুত্বপূর্ণ insight হলো:</p>
+<blockquote><p><strong>কাজের উদ্দেশ্য ও Universe-এর Operating System-এর সঙ্গে মানুষের Alignment শুধু নিজের behaviour বা attitude ইচ্ছাশক্তি দিয়ে control করার বিষয় নয়।</strong></p></blockquote>
+<p>কারণ behaviour-এর পেছনে আরও গভীর operating layers আছে।</p>
+<p>আপনার আগের operating-system model-এর ভাষায় বিষয়টি অনেকটা:</p>
+<p><strong>Physiology → Emotion → Feeling → Thinking → Behaviour → Result</strong></p>
+<p>এবং এর ভিতরে/পেছনে কাজ করছে:</p>
+<p><strong>Belief System + Judgement System + accumulated knowledge/experience</strong></p>
+<p>তাই কেউ যদি বলে—</p>
+<blockquote><p>“আমি আমার attitude বদলে ফেলব।” “আমি positive থাকব।” “আমি behaviour control করব।”</p>
+<p>—তাহলে সে <strong>visible output layer</strong>-এ intervention করার চেষ্টা করছে। কিন্তু underlying system unchanged থাকলে সেই control দীর্ঘস্থায়ী বা নির্ভরযোগ্য নাও হতে পারে।</p></blockquote>
+<p>এখানে আপনার proposition-এর আসল value:</p>
+<blockquote><p><strong>Alignment is not merely a matter of willpower. It is a matter of understanding and operating the system correctly.</strong></p></blockquote>
+<hr class="separator"></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আপনার proposition-এর গুরুত্বপূর্ণ insight হলো:
+
+&gt; **কাজের উদ্দেশ্য ও Universe-এর Operating System-এর সঙ্গে মানুষের Alignment শুধু নিজের behaviour বা attitude ইচ্ছাশক্তি দিয়ে control করার বিষয় নয়।**
+
+কারণ behaviour-এর পেছনে আরও গভীর operating layers আছে।
+
+আপনার আগের operating-system model-এর ভাষায় বিষয়টি অনেকটা:
+
+**Physiology → Emotion → Feeling → Thinking → Behaviour → Result**
+
+এবং এর ভিতরে/পেছনে কাজ করছে:
+
+**Belief System + Judgement System + accumulated knowledge/experience**
+
+তাই কেউ যদি বলে—
+
+&gt; “আমি আমার attitude বদলে ফেলব।”
+&gt; “আমি positive থাকব।”
+&gt; “আমি behaviour control করব।”
+&gt;
+&gt; —তাহলে সে **visible output layer**-এ intervention করার চেষ্টা করছে। কিন্তু underlying system unchanged থাকলে সেই control দীর্ঘস্থায়ী বা নির্ভরযোগ্য নাও হতে পারে।
+
+এখানে আপনার proposition-এর আসল value:
+
+&gt; **Alignment is not merely a matter of willpower. It is a matter of understanding and operating the system correctly.**
+
+---</textarea>
+      </article>
+    </section><section class="exchange">
+      <article class="card prompt-card" id="prompt-02">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 02</div>
+          <button class="copy-button" type="button" data-copy-label="Copy Prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>২. “Physiology determines behaviour” বলবেন না</h2></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>২. “Physiology determines behaviour” বলবেন না</textarea>
+      </article>
+      <article class="card answer-card" id="answer-02">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 02</div>
+          <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+        <div class="card-content"><p>এখানে আমি আপনার formulation-এ একটি গুরুত্বপূর্ণ সংশোধন করব।</p>
+<p><strong>Physiology/biology behaviour-কে influence এবং constrain করে</strong>, কিন্তু behaviour-কে একমাত্র physiology দিয়ে ব্যাখ্যা করা ঠিক হবে না।</p>
+<p>একইভাবে:</p>
+<blockquote><p><strong>Belief system + judgement system → behaviour</strong></p></blockquote>
+<p>এটিও খুব সরল causal claim হয়ে যায়।</p>
+<p>আপনার নিজের framework-এর সঙ্গে বেশি consistent formulation হবে:</p>
+<blockquote><p><strong>Behaviour emerges from the interaction of physiology, internal states, beliefs, judgments, knowledge, experience, and the situation.</strong></p></blockquote>
+<p>এতে আপনার framework আরও intellectually defensible হয়।</p>
+<hr class="separator"></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>এখানে আমি আপনার formulation-এ একটি গুরুত্বপূর্ণ সংশোধন করব।
+
+**Physiology/biology behaviour-কে influence এবং constrain করে**, কিন্তু behaviour-কে একমাত্র physiology দিয়ে ব্যাখ্যা করা ঠিক হবে না।
+
+একইভাবে:
+
+&gt; **Belief system + judgement system → behaviour**
+
+এটিও খুব সরল causal claim হয়ে যায়।
+
+আপনার নিজের framework-এর সঙ্গে বেশি consistent formulation হবে:
+
+&gt; **Behaviour emerges from the interaction of physiology, internal states, beliefs, judgments, knowledge, experience, and the situation.**
+
+এতে আপনার framework আরও intellectually defensible হয়।
+
+---</textarea>
+      </article>
+    </section><section class="exchange">
+      <article class="card prompt-card" id="prompt-03">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 03</div>
+          <button class="copy-button" type="button" data-copy-label="Copy Prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>তাহলে আপনার Business/Knowledge Model কী দাঁড়াচ্ছে?</h2></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>তাহলে আপনার Business/Knowledge Model কী দাঁড়াচ্ছে?</textarea>
+      </article>
+      <article class="card answer-card" id="answer-03">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 03</div>
+          <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+        <div class="card-content"><p>এখানেই আমার মতে আপনার approach-এর সবচেয়ে শক্তিশালী অংশ।</p>
+<p>আপনি <strong>Karma proposition-টি public করবেন।</strong></p>
+<p>কিন্তু:</p>
+<blockquote><p><strong>“কীভাবে Karma অনুযায়ী কাজ করার জন্য নিজের system-কে align করতে হয়”</strong></p></blockquote>
+<p>—এর <strong>actual know-how</strong> আপনার paid/private domain-এ থাকবে।</p>
+<p>এটা খুব logical।</p>
+<p>আমি আপনার content ecosystem-টাকে এভাবে সাজাতাম:</p>
+<h3>PUBLIC</h3>
+<p><strong>What is actually happening?</strong></p>
+<p>মানুষকে দেখাবেন—</p>
+<ul><li><p>কেন শুধু motivation যথেষ্ট নয়</p></li><li><p>কেন attitude control এত সহজ নয়</p></li><li><p>কেন একই situation-এ মানুষ ভিন্নভাবে respond করে</p></li><li><p>behaviour-এর নিচে কী কী system কাজ করে</p></li><li><p>belief ও judgement কীভাবে response-কে shape করে</p></li><li><p>কেন ভুল intervention করলে কাঙ্ক্ষিত result আসে</p></li><li><p>Karma proposition কেন সাধারণ “be good / do good” ধারণা নয়</p></li></ul>
+<p>অর্থাৎ public content-এর কাজ:</p>
+<blockquote><p><strong>Make the invisible system visible.</strong></p></blockquote>
+<hr class="separator">
+<h3>MEMBERS-ONLY</h3>
+<p><strong>How do I actually operate myself according to this understanding?</strong></p>
+<p>এখানে থাকবে আপনার exclusive know-how:</p>
+<ul><li><p>নিজের operating system diagnose করার method</p></li><li><p>belief system identify করার method</p></li><li><p>judgement system examine করার method</p></li><li><p>physiology/emotional state-এর সঙ্গে কাজ করার method</p></li><li><p>নিজের intervention point নির্ণয়</p></li><li><p>desired alignment তৈরি করার method</p></li><li><p>knowledge acquisition</p></li><li><p>deliberate practice</p></li><li><p>real-life application</p></li><li><p>feedback loop</p></li><li><p>correction protocol</p></li><li><p>repeatable exercises</p></li><li><p>case-based practice</p></li></ul>
+<p>অর্থাৎ:</p>
+<blockquote><p><strong>Public → Understanding</strong> <strong>Private → Capability</strong></p></blockquote>
+<p>এটা খুব গুরুত্বপূর্ণ distinction।</p>
+<hr class="separator"></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>এখানেই আমার মতে আপনার approach-এর সবচেয়ে শক্তিশালী অংশ।
+
+আপনি **Karma proposition-টি public করবেন।**
+
+কিন্তু:
+
+&gt; **“কীভাবে Karma অনুযায়ী কাজ করার জন্য নিজের system-কে align করতে হয়”**
+
+—এর **actual know-how** আপনার paid/private domain-এ থাকবে।
+
+এটা খুব logical।
+
+আমি আপনার content ecosystem-টাকে এভাবে সাজাতাম:
+
+### PUBLIC
+
+**What is actually happening?**
+
+মানুষকে দেখাবেন—
+
+* কেন শুধু motivation যথেষ্ট নয়
+* কেন attitude control এত সহজ নয়
+* কেন একই situation-এ মানুষ ভিন্নভাবে respond করে
+* behaviour-এর নিচে কী কী system কাজ করে
+* belief ও judgement কীভাবে response-কে shape করে
+* কেন ভুল intervention করলে কাঙ্ক্ষিত result আসে
+* Karma proposition কেন সাধারণ “be good / do good” ধারণা নয়
+
+অর্থাৎ public content-এর কাজ:
+
+&gt; **Make the invisible system visible.**
+
+---
+
+### MEMBERS-ONLY
+
+**How do I actually operate myself according to this understanding?**
+
+এখানে থাকবে আপনার exclusive know-how:
+
+* নিজের operating system diagnose করার method
+* belief system identify করার method
+* judgement system examine করার method
+* physiology/emotional state-এর সঙ্গে কাজ করার method
+* নিজের intervention point নির্ণয়
+* desired alignment তৈরি করার method
+* knowledge acquisition
+* deliberate practice
+* real-life application
+* feedback loop
+* correction protocol
+* repeatable exercises
+* case-based practice
+
+অর্থাৎ:
+
+&gt; **Public → Understanding**
+&gt; **Private → Capability**
+
+এটা খুব গুরুত্বপূর্ণ distinction।
+
+---</textarea>
+      </article>
+    </section><section class="exchange">
+      <article class="card prompt-card" id="prompt-04">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 04</div>
+          <button class="copy-button" type="button" data-copy-label="Copy Prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>আরেকটি জিনিস আমি strongly recommend করব</h2></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আরেকটি জিনিস আমি strongly recommend করব</textarea>
+      </article>
+      <article class="card answer-card" id="answer-04">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 04</div>
+          <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+        <div class="card-content"><p>আপনার <strong>exclusive knowledge-কে শুধু “information” হিসেবে বিক্রি করবেন না।</strong></p>
+<p>আপনার আসল intellectual property হওয়া উচিত:</p>
+<blockquote><p><strong>Knowledge + Method + Practice + Feedback + Skill</strong></p></blockquote>
+<p>কারণ আপনি নিজেই বলছেন—</p>
+<blockquote><p><strong>“এইটা knowledge and skill-এর উপর নির্ভর করে, যেটা শিখতে ও অনুশীলন করতে হয়।”</strong></p></blockquote>
+<p>তাহলে আপনার membership-এর value হওয়া উচিত <strong>“আমি আপনাকে কিছু গোপন তথ্য জানাব”</strong> নয়।</p>
+<p>বরং:</p>
+<blockquote><p><strong>“আমি আপনাকে সেই knowledge ও practice system দেব, যার মাধ্যমে আপনি নিজের system-কে বুঝতে, diagnose করতে এবং প্রয়োজনমতো operate করতে শিখবেন।”</strong></p></blockquote>
+<p>এটা অনেক বেশি শক্তিশালী proposition।</p>
+<hr class="separator"></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আপনার **exclusive knowledge-কে শুধু “information” হিসেবে বিক্রি করবেন না।**
+
+আপনার আসল intellectual property হওয়া উচিত:
+
+&gt; **Knowledge + Method + Practice + Feedback + Skill**
+
+কারণ আপনি নিজেই বলছেন—
+
+&gt; **“এইটা knowledge and skill-এর উপর নির্ভর করে, যেটা শিখতে ও অনুশীলন করতে হয়।”**
+
+তাহলে আপনার membership-এর value হওয়া উচিত **“আমি আপনাকে কিছু গোপন তথ্য জানাব”** নয়।
+
+বরং:
+
+&gt; **“আমি আপনাকে সেই knowledge ও practice system দেব, যার মাধ্যমে আপনি নিজের system-কে বুঝতে, diagnose করতে এবং প্রয়োজনমতো operate করতে শিখবেন।”**
+
+এটা অনেক বেশি শক্তিশালী proposition।
+
+---</textarea>
+      </article>
+    </section><section class="exchange">
+      <article class="card prompt-card" id="prompt-05">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 05</div>
+          <button class="copy-button" type="button" data-copy-label="Copy Prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>আপনার পুরো model-টাকে এক লাইনে ধরলে</h2></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আপনার পুরো model-টাকে এক লাইনে ধরলে</textarea>
+      </article>
+      <article class="card answer-card" id="answer-05">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 05</div>
+          <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+        <div class="card-content"><p>আমি আপনার কাজের পদ্ধতিকে এভাবে সংজ্ঞায়িত করব:</p>
+<blockquote><p><strong>Unfold Actuality reveals how the system actually works; the private practice system teaches you how to operate yourself within it.</strong></p></blockquote>
+<p>আর আপনার Karma proposition:</p>
+<blockquote><p><strong>KARMA IS OUR INNATE RELIGION.</strong> <strong>The true religion within us.</strong></p></blockquote>
+<p>তারপর আপনার intellectual journey:</p>
+<p><strong>Karma → Purpose → Universal Operating System → Human Operating System → Misalignment → Intervention → Alignment → Capability → Practice</strong></p>
+<p>এখানে <strong>Unfold Actuality</strong> শুধু “Karma নিয়ে কথা বলা” platform থাকছে না।</p>
+<p>এটি হয়ে উঠছে:</p>
+<blockquote><p><strong>Reality understanding → Self-understanding → Alignment → Effective action</strong></p></blockquote>
+<p>এবং এখানেই আপনার <strong>public-to-membership separation</strong>-এর যুক্তি সবচেয়ে পরিষ্কার।</p></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আমি আপনার কাজের পদ্ধতিকে এভাবে সংজ্ঞায়িত করব:
+
+&gt; **Unfold Actuality reveals how the system actually works; the private practice system teaches you how to operate yourself within it.**
+
+আর আপনার Karma proposition:
+
+&gt; **KARMA IS OUR INNATE RELIGION.**
+&gt; **The true religion within us.**
+
+তারপর আপনার intellectual journey:
+
+**Karma → Purpose → Universal Operating System → Human Operating System → Misalignment → Intervention → Alignment → Capability → Practice**
+
+এখানে **Unfold Actuality** শুধু “Karma নিয়ে কথা বলা” platform থাকছে না।
+
+এটি হয়ে উঠছে:
+
+&gt; **Reality understanding → Self-understanding → Alignment → Effective action**
+
+এবং এখানেই আপনার **public-to-membership separation**-এর যুক্তি সবচেয়ে পরিষ্কার।</textarea>
+      </article>
+    </section><section class="exchange">
+      <article class="card prompt-card" id="prompt-06">
+        <div class="card-top"><div class="eyebrow"><span class="dot prompt-dot"></span>প্রম্পট 06</div>
+          <button class="copy-button" type="button" data-copy-label="Copy Prompt">Copy Prompt</button></div>
+        <div class="prompt-text"><h2>আমার একটি শেষ সতর্কতা</h2></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আমার একটি শেষ সতর্কতা</textarea>
+      </article>
+      <article class="card answer-card" id="answer-06">
+        <div class="card-top"><div class="eyebrow"><span class="dot answer-dot"></span>উত্তর 06</div>
+          <button class="copy-button secondary" type="button" data-copy-label="Copy Answer">Copy Answer</button></div>
+        <div class="card-content"><p>আপনি যদি বলেন <strong>“Universe-এর Operating System”</strong>, তাহলে এটাকে শুধু একটি grand philosophical statement হিসেবে রেখে দিলে আপনার পুরো proposition-এর credibility দুর্বল হতে পারে। আপনাকে ধীরে ধীরে দেখাতে হবে:</p>
+<p><strong>কী observation → কোন pattern → কোন mechanism → কী operational rule → কী consequence</strong></p>
+<p>অর্থাৎ আপনার নিজের <strong>“Unfold Actuality”</strong> পদ্ধতিতেই Karma proposition-টিকেও unfold করতে হবে।</p>
+<p>তাহলেই <strong>Karma একটি belief নয়—একটি investigated proposition</strong> হিসেবে দাঁড়াতে শুরু করবে।</p>
+<p>আর আপনার members-only অংশ হবে সেই proposition-এর <strong>practical operating know-how</strong>।</p></div>
+        <textarea class="copy-source" aria-hidden="true" tabindex="-1" readonly>আপনি যদি বলেন **“Universe-এর Operating System”**, তাহলে এটাকে শুধু একটি grand philosophical statement হিসেবে রেখে দিলে আপনার পুরো proposition-এর credibility দুর্বল হতে পারে। আপনাকে ধীরে ধীরে দেখাতে হবে:
+
+**কী observation → কোন pattern → কোন mechanism → কী operational rule → কী consequence**
+
+অর্থাৎ আপনার নিজের **“Unfold Actuality”** পদ্ধতিতেই Karma proposition-টিকেও unfold করতে হবে।
+
+তাহলেই **Karma একটি belief নয়—একটি investigated proposition** হিসেবে দাঁড়াতে শুরু করবে।
+
+আর আপনার members-only অংশ হবে সেই proposition-এর **practical operating know-how**।</textarea>
+      </article>
+    </section></main>
+</div>
+<footer>Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</footer>
+<script>
+(function(){
+  function fallbackCopy(textarea){
+    textarea.style.position="fixed";textarea.style.left="-9999px";textarea.style.top="0";textarea.select();
+    var ok=false;try{ok=document.execCommand("copy")}catch(e){ok=false}
+    textarea.style.position="";textarea.style.left="";textarea.style.top="";return ok;
+  }
+  document.addEventListener("click",async function(event){
+    var button=event.target.closest("[data-copy-label]");if(!button)return;
+    var area=button.closest(".card").querySelector(".copy-source"),ok=false;
+    try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(area.value);ok=true}else{ok=fallbackCopy(area)}}
+    catch(e){ok=fallbackCopy(area)}
+    var label=button.dataset.copyLabel;button.textContent=ok?"Copied!":"Copy failed";button.classList.toggle("is-copied",ok);
+    setTimeout(function(){button.textContent=label;button.classList.remove("is-copied")},1600);
+  });
+})();
+</script>
+</body>
+</html>
